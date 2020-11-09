@@ -4,7 +4,7 @@ import { Rules } from "../components";
 import logo from "../logo.svg";
 
 export default function RulesContainer() {
-  const { setShowRules } = useContext(RulesContext);
+  const setShowRules = useContext(RulesContext);
   return (
     <Rules>
       <Rules.Overlay onClick={() => setShowRules(false)} />
@@ -15,12 +15,12 @@ export default function RulesContainer() {
         </Rules.Frame>
         <Rules.InfoText>
           You need to guess the
-          <span style={{ fontWeight: "bold" }}>hidden word or number </span>
+          <span style={{ fontWeight: "bold" }}> hidden word or number </span>
           in specific number of attempts. The number of attempts depends on the
           difficulty level selected. The number or word can be of length 3 to 7
-          based on your selection.
+          based on your game selection.
           <span style={{ fontWeight: "bold" }}>
-            The letters can’t be repeated in single Word or Number combination
+            &nbsp;A letter can’t be repeated in a Word or Number combination
           </span>
           .
         </Rules.InfoText>
@@ -29,9 +29,7 @@ export default function RulesContainer() {
             Examples shown below for 4 letter word - CAKE
           </Rules.SubText>
           <Rules.SubText>
-            <span style={{ color: "red" }}>
-              &nbsp;NOT ALLOWED TYPES ---&gt;
-            </span>
+            <span style={{ color: "red" }}>NOT ALLOWED TYPES </span>
           </Rules.SubText>
           <Rules.SubText>
             <span

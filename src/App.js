@@ -8,22 +8,17 @@ function App() {
   const [showRules, setShowRules] = useState(false);
 
   return (
-    <RulesContext.Provider value={{ setShowRules }}>
+    <RulesContext.Provider value={setShowRules}>
       {showRules && <RulesContainer />}
-      <div>
-        <Router>
-          <Route
-            path="/"
-            exact
-            render={() => (
-              <HomeContainer
-                showRules={showRules}
-                setShowRules={setShowRules}
-              />
-            )}
-          />
-        </Router>
-      </div>
+      <Router>
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <HomeContainer showRules={showRules} setShowRules={setShowRules} />
+          )}
+        />
+      </Router>
     </RulesContext.Provider>
   );
 }

@@ -20,17 +20,11 @@ export const ButtonContainer = styled.div`
   margin: auto;
   max-width: 400px;
   margin-top: 200px;
+  @media (max-width: 1100px) {
+    margin-top: 150px;
+  }
 `;
 
-export const Logo = styled.img`
-  border: 0;
-  max-width: 700px;
-  width: 150px;
-  cursor: pointer;
-  padding: 0;
-  margin-left: 7em;
-  margin-top: 2em;
-`;
 export const Button = styled.button`
   width: 400px;
   padding: 30px;
@@ -52,6 +46,17 @@ export const Button = styled.button`
     letter-spacing: 0px;
     transition: background-color 0.3s;
   }
+
+  @media (max-width: 1100px) {
+    font-size: 15px;
+    width: 200px;
+    padding: 20px;
+    margin-bottom: 50px;
+    &:hover {
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
 `;
 export const ButtonLink = styled.a`
   color: #fcfffc;
@@ -64,6 +69,9 @@ export const ButtonLink = styled.a`
     color: #e6a347;
     font-size: 19px;
   }
+  @media (max-width: 1100px) {
+    font-size: 14px;
+  }
 `;
 export const MainText = styled.h1`
   font-size: 3em;
@@ -72,10 +80,19 @@ export const MainText = styled.h1`
     content: "Cow";
     color: #ffa62b;
   }
+  @media (max-width: 1100px) {
+    font-size: 2em;
+    margin-left: -70px;
+    margin-top: 30px;
+  }
 `;
 export const Subtitle = styled.p`
   color: white;
   margin-left: 15%;
   margin-top: -20px;
   font-style: italic;
+  @media (max-width: 1100px) {
+    margin-top: -15px;
+    margin-left: -70px;
+  }
 `;

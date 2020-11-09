@@ -1,8 +1,6 @@
 import styled from "styled-components/macro";
 
-export const Container = styled.div`
-  /* background-color: #14274e; */
-`;
+export const Container = styled.div``;
 
 export const Frame = styled.div`
   display: flex;
@@ -21,6 +19,7 @@ export const Overlay = styled.div`
 `;
 
 export const Content = styled.div`
+  overflow: scroll;
   width: 70%;
   height: 70%;
   background-color: #14274e;
@@ -32,6 +31,15 @@ export const Content = styled.div`
   bottom: 20%;
   box-sizing: border-box;
   box-shadow: 1px 1px white;
+  @media (max-width: 1100px) {
+    width: 100%;
+    height: 80%;
+    top: 5%;
+    left: 2%;
+    right: 2%;
+    bottom: 20%;
+    box-shadow: 0px 0px transparent;
+  }
 `;
 
 export const MainText = styled.h1`
@@ -39,6 +47,12 @@ export const MainText = styled.h1`
   color: white;
   margin-top: 5%;
   margin-left: 28%;
+
+  @media (max-width: 1100px) {
+    font-size: 1em;
+    margin-left: 15%;
+    margin-top: 15%;
+  }
 `;
 
 export const InfoText = styled.p`
@@ -47,6 +61,13 @@ export const InfoText = styled.p`
   margin-left: 4%;
   font-size: 1em;
   line-height: 1.6;
+  @media (max-width: 1100px) {
+    font-size: 0.8em;
+    margin-left: 7%;
+    margin-right: 7%;
+    line-height: 1.9;
+    letter-spacing: 1px;
+  }
 `;
 
 export const SubText = styled.p`
@@ -54,11 +75,21 @@ export const SubText = styled.p`
   letter-spacing: 1px;
   /* margin-left: 4%; */
   font-size: 1em;
+  @media (max-width: 1100px) {
+    font-size: 0.8em;
+    margin-left: 7%;
+    margin-right: 7%;
+
+    line-height: 1.9;
+  }
 `;
 export const WordContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  @media (max-width: 1100px) {
+    flex-direction: column;
+  }
 `;
 
 export const ExampleContainer = styled.div`
@@ -74,12 +105,14 @@ export const Button = styled.button`
   border-radius: 50px;
   margin-top: 2%;
   margin-left: 45%;
+  margin-bottom: 20%;
   background-color: #394867;
   color: #fcfffc;
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 1px;
   border: none;
+
   cursor: pointer;
   outline: none;
   &:hover {
@@ -88,5 +121,10 @@ export const Button = styled.button`
     font-size: 22px;
     letter-spacing: 0px;
     transition: background-color 0.3s;
+  }
+  @media (max-width: 1100px) {
+    margin-bottom: 10%;
+    margin-left: 33%;
+    margin-top: 8%;
   }
 `;

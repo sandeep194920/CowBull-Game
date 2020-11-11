@@ -1,8 +1,21 @@
-import React from "react";
-import { Home } from "../components/index.js";
+import React, { useContext } from "react";
+import { Home } from "../components";
 import logo from "../logo.svg";
+import { GameContext } from "../App";
+import { useHistory } from "react-router-dom";
 
-export default function HomeContainer({ setShowRules, showRules }) {
+export default function HomeContainer({ setShowRules }) {
+  const { setGameType } = useContext(GameContext);
+  const history = useHistory();
+
+  const gameHandler = (game) => {
+    if (game === "Word") {
+      setGameType("Word");
+    } else {
+      setGameType("Number");
+    }
+    history.push("/select");
+  };
   return (
     <Home>
       <Home.Frame>
@@ -13,8 +26,12 @@ export default function HomeContainer({ setShowRules, showRules }) {
         </Home.WordContainer>
       </Home.Frame>
       <Home.ButtonContainer>
-        <Home.Button>Let's Play Word</Home.Button>
-        <Home.Button>Let's Play Number</Home.Button>
+        <Home.Button onClick={() => gameHandler("Word")}>
+          Let's Play Word
+        </Home.Button>
+        <Home.Button onClick={() => gameHandler("Number")}>
+          Let's Play Number
+        </Home.Button>
         <Home.ButtonLink setShowRules={setShowRules}>
           How to Play?
         </Home.ButtonLink>

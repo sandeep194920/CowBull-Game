@@ -19,7 +19,6 @@ export const Overlay = styled.div`
 `;
 
 export const Content = styled.div`
-  overflow: scroll;
   width: 70%;
   height: 70%;
   background-color: #14274e;
@@ -32,6 +31,7 @@ export const Content = styled.div`
   box-sizing: border-box;
   box-shadow: 1px 1px white;
   @media (max-width: 1100px) {
+    overflow: scroll;
     width: 100%;
     height: 80%;
     top: 5%;

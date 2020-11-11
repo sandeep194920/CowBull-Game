@@ -26,3 +26,12 @@ export const RulesPageLogo = styled(HomePageLogo)`
     margin-left: 1em;
   }
 `;
+
+export const GameSelectionPageLogo = styled(RulesPageLogo)`
+  @media (max-width: 700px) {
+    max-width: 300px;
+    width: 70px;
+    margin-left: 1em;
+    margin-top: 5px;
+  }
+`;

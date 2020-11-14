@@ -40,7 +40,7 @@ export const Button = styled.button`
   cursor: pointer;
   outline: none;
   &:hover {
-    background-color: #e6a347;
+    background-color: #ffa62b;
     font-weight: 700;
     font-size: 22px;
     letter-spacing: 0px;
@@ -66,7 +66,7 @@ export const ButtonLink = styled.a`
   cursor: pointer;
   &:hover {
     font-weight: 700;
-    color: #e6a347;
+    color: #ffa62b;
     font-size: 19px;
   }
   @media (max-width: 1100px) {

@@ -1,13 +1,40 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GameSelection } from "../components";
 import logo from "../logo.svg";
 import { GameContext } from "../App";
 import { useHistory } from "react-router-dom";
+import * as GAME from "../helpers/constants";
 
 export default function GameSelectionContainer() {
-  const { gameType } = useContext(GameContext);
+  const { gameType, level, setLevel, letters, setLetters } = useContext(
+    GameContext
+  );
   const history = useHistory();
+  const [levelSelected, setLevelSelected] = useState(null);
+  const [lettersSelected, setLettersSelected] = useState(null);
 
+  useEffect(() => {
+    console.log(
+      `The game type is ${gameType}, the level is ${level} and the length is ${letters}`
+    );
+  });
+
+  const gamePlayHandler = () => {
+    console.log(
+      `The game type is ${gameType}, the level is ${level} and the length is ${letters}`
+    );
+    history.push("/play");
+  };
+
+  const setLevelHandler = ({ target }) => {
+    localStorage.setItem(GAME.LEVEL, target.value);
+    setLevel(localStorage.getItem(GAME.LEVEL));
+  };
+
+  const setLettersHandler = ({ target }) => {
+    localStorage.setItem(GAME.LETTERS, target.value);
+    setLetters(localStorage.getItem(GAME.LETTERS));
+  };
   return (
     <GameSelection>
       <GameSelection.Frame>
@@ -23,6 +50,7 @@ export default function GameSelectionContainer() {
 
       <GameSelection.ButtonContainer
         // onChange={({ target }) => setLevel(target.value)}
+        onChange={setLevelHandler}
         flexDirection="row"
       >
         <GameSelection.SelectButton
@@ -31,7 +59,10 @@ export default function GameSelectionContainer() {
           value="Easy"
           name="level"
         />
-        <GameSelection.SelectLabel htmlFor="easy">
+        <GameSelection.SelectLabel
+          onClick={() => setLevelSelected(true)}
+          htmlFor="easy"
+        >
           Easy
         </GameSelection.SelectLabel>
         <GameSelection.SelectButton
@@ -40,7 +71,10 @@ export default function GameSelectionContainer() {
           value="Medium"
           name="level"
         />
-        <GameSelection.SelectLabel htmlFor="medium">
+        <GameSelection.SelectLabel
+          htmlFor="medium"
+          onClick={() => setLevelSelected(true)}
+        >
           Medium
         </GameSelection.SelectLabel>
 
@@ -50,55 +84,80 @@ export default function GameSelectionContainer() {
           value="Hard"
           name="level"
         />
-        <GameSelection.SelectLabel htmlFor="hard">
+        <GameSelection.SelectLabel
+          onClick={() => setLevelSelected(true)}
+          htmlFor="hard"
+        >
           Hard
         </GameSelection.SelectLabel>
       </GameSelection.ButtonContainer>
 
       <GameSelection.ButtonContainer
-        // onChange={({ target }) => setLevel(target.value)}
+        onChange={setLettersHandler}
         flexDirection="row"
         shrinkable
       >
         <GameSelection.SelectButton
           type="radio"
           id="3letters"
-          value="3 Letters"
+          value="3"
           name="letters"
         />
-        <GameSelection.SelectLabel column htmlFor="3letters">
+        <GameSelection.SelectLabel
+          onClick={() => setLettersSelected(true)}
+          column
+          htmlFor="3letters"
+        >
           3 Letters
         </GameSelection.SelectLabel>
         <GameSelection.SelectButton
           type="radio"
           id="4letters"
-          value="4 Letters"
+          value="4"
           name="letters"
         />
-        <GameSelection.SelectLabel column htmlFor="4letters">
+        <GameSelection.SelectLabel
+          onClick={() => setLettersSelected(true)}
+          column
+          htmlFor="4letters"
+        >
           4 Letters
         </GameSelection.SelectLabel>
         <GameSelection.SelectButton
           type="radio"
           id="5letters"
-          value="5 Letters"
+          value="5"
           name="letters"
         />
-        <GameSelection.SelectLabel column htmlFor="5letters">
+        <GameSelection.SelectLabel
+          onClick={() => setLettersSelected(true)}
+          column
+          htmlFor="5letters"
+        >
           5 Letters
         </GameSelection.SelectLabel>
         <GameSelection.SelectButton
           type="radio"
           id="6letters"
-          value="6 Letters"
+          value="6"
           name="letters"
         />
-        <GameSelection.SelectLabel column htmlFor="6letters">
+        <GameSelection.SelectLabel
+          onClick={() => setLettersSelected(true)}
+          column
+          htmlFor="6letters"
+        >
           6 Letters
         </GameSelection.SelectLabel>
       </GameSelection.ButtonContainer>
       <GameSelection.ButtonContainer confirm>
-        <GameSelection.Button play>PLAY</GameSelection.Button>
+        <GameSelection.Button
+          play
+          onClick={gamePlayHandler}
+          disabled={levelSelected === null || lettersSelected === null}
+        >
+          PLAY
+        </GameSelection.Button>
         <GameSelection.Button onClick={history.goBack}>
           BACK
         </GameSelection.Button>

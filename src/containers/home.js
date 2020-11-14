@@ -3,6 +3,7 @@ import { Home } from "../components";
 import logo from "../logo.svg";
 import { GameContext } from "../App";
 import { useHistory } from "react-router-dom";
+import * as GAME from "../helpers/constants";
 
 export default function HomeContainer({ setShowRules }) {
   const { setGameType } = useContext(GameContext);
@@ -10,10 +11,11 @@ export default function HomeContainer({ setShowRules }) {
 
   const gameHandler = (game) => {
     if (game === "Word") {
-      setGameType("Word");
+      window.localStorage.setItem(GAME.GAME_TYPE, "Word");
     } else {
-      setGameType("Number");
+      window.localStorage.setItem(GAME.GAME_TYPE, "Number");
     }
+    setGameType(localStorage.getItem(GAME.GAME_TYPE));
     history.push("/select");
   };
   return (

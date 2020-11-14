@@ -22,8 +22,13 @@ export const Button = styled.button`
   border: none;
   cursor: pointer;
   outline: none;
+  &:disabled {
+    background-color: #9ba4b4;
+  }
   &:hover {
     background-color: #e6a347;
+    background-color: #ffa62b;
+
     font-weight: 500;
     letter-spacing: ${({ play }) => play && "10px"};
     transition: background-color all 0.3s;
@@ -60,6 +65,7 @@ export const SelectLabel = styled.label`
 
   &:hover {
     background-color: #e6a347;
+    background-color: #ffa62b;
     font-weight: 700;
     transition: background-color 0.3s;
     border: none;
@@ -86,7 +92,7 @@ export const SelectButton = styled.input`
   opacity: 0;
 
   &:checked + ${SelectLabel} {
-    background-color: #e6a347;
+    background-color: #ffa62b;
   }
 `;
 

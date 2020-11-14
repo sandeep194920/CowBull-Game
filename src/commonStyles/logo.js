@@ -35,3 +35,11 @@ export const GameSelectionPageLogo = styled(RulesPageLogo)`
     margin-top: 5px;
   }
 `;
+
+export const GamePlayPageLogo = styled(GameSelectionPageLogo)`
+  margin-right: 2%;
+  @media (max-width: 700px) {
+    margin-top: 3px;
+    display: none;
+  }
+`;

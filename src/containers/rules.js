@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { RulesContext } from "../App";
+import { GameContext } from "../App";
 import { Rules } from "../components";
 import logo from "../logo.svg";
 
 export default function RulesContainer() {
-  const setShowRules = useContext(RulesContext);
+  const { setShowRules } = useContext(GameContext);
   return (
     <Rules>
       <Rules.Overlay onClick={() => setShowRules(false)} />

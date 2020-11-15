@@ -6,7 +6,6 @@ import { GameContext } from "../App";
 export default function GamePlayContainer() {
   const { gameType, level, letters } = useContext(GameContext);
 
-  // const isWeb = window.innerWidth > 1100;
   const isMobile = window.innerWidth < 1000;
 
   useEffect(() => {
@@ -44,7 +43,6 @@ export default function GamePlayContainer() {
                 opacity: 0.3,
                 borderRadius: "20%",
                 userSelect: "none",
-                // textShadow: "5px 5px 5px #394867",
                 textShadow: "0 0 5px rgba(0,0,0,0.5)",
               }}
             >

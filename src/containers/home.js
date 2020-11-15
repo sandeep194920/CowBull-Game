@@ -5,8 +5,8 @@ import { GameContext } from "../App";
 import { useHistory } from "react-router-dom";
 import * as GAME from "../helpers/constants";
 
-export default function HomeContainer({ setShowRules }) {
-  const { setGameType } = useContext(GameContext);
+export default function HomeContainer() {
+  const { setGameType, setShowRules } = useContext(GameContext);
   const history = useHistory();
 
   const gameHandler = (game) => {

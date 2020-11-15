@@ -43,3 +43,5 @@ export const GamePlayPageLogo = styled(GameSelectionPageLogo)`
     display: none;
   }
 `;
+
+export const QuitPageLogo = styled(GameSelectionPageLogo)``;

@@ -12,7 +12,7 @@ import {
 
 import { HomePageLogo as Logo } from "../../commonStyles/logo";
 
-export default function Home({ children, setShowRules, ...restProps }) {
+export default function Home({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 }
 
@@ -53,14 +53,18 @@ Home.Button = function HomeButton({ children, btnText, ...restProps }) {
 
 Home.ButtonLink = function HomeButtonLink({
   children,
-  showRules,
-  setShowRules,
+  showRulesModal,
+  setShowRulesModal,
   path,
   btnText,
   ...restProps
 }) {
   return (
-    <ButtonLink onClick={() => setShowRules(true)} path={path} {...restProps}>
+    <ButtonLink
+      onClick={() => setShowRulesModal(true)}
+      path={path}
+      {...restProps}
+    >
       {children}
     </ButtonLink>
   );

@@ -11,56 +11,63 @@ import {
   WordContainer,
   ExampleContainer,
   Button,
-} from "./styles/rules";
+} from "./styles/rulesModal";
 import { RulesPageLogo } from "../../commonStyles/logo";
 
-export default function Rules({ children, ...restProps }) {
+export default function RulesModal({ children, ...restProps }) {
   return ReactDOM.createPortal(
     <Container {...restProps}>{children}</Container>,
     document.body
   );
 }
 
-Rules.Overlay = function RulesOverlay({ children, ...restProps }) {
+RulesModal.Overlay = function RulesModalOverlay({ children, ...restProps }) {
   return <Overlay {...restProps}>{children}</Overlay>;
 };
 
-Rules.Frame = function RulesFrame({ children, ...restProps }) {
+RulesModal.Frame = function RulesModalFrame({ children, ...restProps }) {
   return <Frame {...restProps}>{children}</Frame>;
 };
 
-Rules.Logo = function RulesLogo({ ...restProps }) {
+RulesModal.Logo = function RulesModalLogo({ ...restProps }) {
   return <RulesPageLogo {...restProps} />;
 };
 
-Rules.Content = function RulesContent({ children, ...restProps }) {
+RulesModal.Content = function RulesModalContent({ children, ...restProps }) {
   return <Content {...restProps}>{children}</Content>;
 };
 
-Rules.MainText = function RulesMainText({ children, ...restProps }) {
+RulesModal.MainText = function RulesModalMainText({ children, ...restProps }) {
   return <MainText {...restProps}>{children}</MainText>;
 };
 
-Rules.InfoText = function RulesInfoText({ children, ...restProps }) {
+RulesModal.InfoText = function RulesIModalnfoText({ children, ...restProps }) {
   return <InfoText {...restProps}>{children}</InfoText>;
 };
 
-Rules.SubText = function RulesSubText({ children, ...restProps }) {
+RulesModal.SubText = function RulesModalSubText({ children, ...restProps }) {
   return <SubText {...restProps}>{children}</SubText>;
 };
 
-Rules.WordContainer = function RulesWordContainer({ children, ...restProps }) {
+RulesModal.WordContainer = function RulesModalWordContainer({
+  children,
+  ...restProps
+}) {
   return <WordContainer {...restProps}>{children}</WordContainer>;
 };
 
-Rules.ExampleContainer = function RulesExampleContainer({
+RulesModal.ExampleContainer = function RulesModalExampleContainer({
   children,
   ...restProps
 }) {
   return <ExampleContainer {...restProps}>{children}</ExampleContainer>;
 };
 
-Rules.Button = function RulesButton({ children, btnText, ...restProps }) {
+RulesModal.Button = function RulesModalButton({
+  children,
+  btnText,
+  ...restProps
+}) {
   return (
     <Button btnText={btnText} {...restProps}>
       {children}

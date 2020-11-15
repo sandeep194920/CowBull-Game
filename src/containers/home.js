@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import * as GAME from "../helpers/constants";
 
 export default function HomeContainer() {
-  const { setGameType, setShowRules } = useContext(GameContext);
+  const { setGameType, setShowRulesModal } = useContext(GameContext);
   const history = useHistory();
 
   const gameHandler = (game) => {
@@ -34,7 +34,7 @@ export default function HomeContainer() {
         <Home.Button onClick={() => gameHandler("Number")}>
           Let's Play Number
         </Home.Button>
-        <Home.ButtonLink setShowRules={setShowRules}>
+        <Home.ButtonLink setShowRulesModal={setShowRulesModal}>
           How to Play?
         </Home.ButtonLink>
       </Home.ButtonContainer>

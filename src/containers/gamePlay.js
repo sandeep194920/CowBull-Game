@@ -4,7 +4,9 @@ import logo from "../logo.svg";
 import { GameContext } from "../App";
 
 export default function GamePlayContainer() {
-  const { gameType, level, letters } = useContext(GameContext);
+  const { gameType, level, letters, setShowQuitModal } = useContext(
+    GameContext
+  );
 
   const isMobile = window.innerWidth < 1000;
 
@@ -246,7 +248,9 @@ export default function GamePlayContainer() {
       <GamePlay.ButtonContainer>
         <GamePlay.Button reveal>Reveal Word</GamePlay.Button>
         <GamePlay.Button guess>Guess Next Word</GamePlay.Button>
-        <GamePlay.Button quit>Quit</GamePlay.Button>
+        <GamePlay.Button onClick={() => setShowQuitModal(true)} quit>
+          Quit
+        </GamePlay.Button>
       </GamePlay.ButtonContainer>
     </GamePlay>
   );

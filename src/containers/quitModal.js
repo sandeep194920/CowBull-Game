@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GameContext } from "../App";
+import { Modal, QuitModal } from "../components";
 import logo from "../logo.svg";
 
 export default function QuitModalContainer() {
+  const { setShowQuitModal } = useContext(GameContext);
   return (
     <Modal style={{ color: "white" }}>
-      <Modal.Overlay onClick={() => setShowModal(false)} />
+      <Modal.Overlay onClick={() => setShowQuitModal(false)} />
       {/* different modal contents go here */}
       <Modal.Content>
         {/* in here, we get the actual component */}

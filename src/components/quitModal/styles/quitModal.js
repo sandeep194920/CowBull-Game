@@ -9,6 +9,16 @@ export const Container = styled.div`
   right: 25%;
   bottom: 25%;
   padding: 1%;
+  box-sizing: border-box;
+  box-shadow: 1px 1px white;
+  @media (max-width: 1100px) {
+    width: 80%;
+    height: 60%;
+    margin: auto;
+    top: 20%;
+    left: 2%;
+    right: 2%;
+  }
 `;
 
 export const Frame = styled.div`
@@ -27,23 +37,25 @@ export const MainText = styled.h1`
     margin-left: 15%;
     margin-top: 15%;
   }
+  @media (max-width: 700px) {
+    font-size: 0.9em;
+    letter-spacing: 0.3px;
+    line-height: 2em;
+    margin-right: 1%;
+    margin-left: 5%;
+    margin-top: 10%;
+  }
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: orange; */
-  /* width: 50%; */
-  margin: auto;
-  margin-top: 9%;
-  /* justify-content: center; */
-  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+
   @media (max-width: 700px) {
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    margin-top: 40px;
-    width: 100%;
+    align-items: center;
+    margin-top: 15%;
   }
 `;
 
@@ -51,9 +63,6 @@ export const Button = styled.button`
   width: 220px;
   padding: 8px;
   border-radius: 50px;
-  /* margin-top: 2%; */
-  /* margin-left: 45%; */
-  margin-bottom: 6%;
   background-color: #394867;
   color: #fcfffc;
   font-size: 20px;
@@ -63,6 +72,11 @@ export const Button = styled.button`
 
   cursor: pointer;
   outline: none;
+
+  margin-bottom: 6%;
+  margin-left: 33%;
+  margin-top: 4%;
+
   &:hover {
     background-color: #e6a347;
     font-weight: 700;
@@ -70,9 +84,11 @@ export const Button = styled.button`
     letter-spacing: 0px;
     transition: background-color 0.3s;
   }
-  @media (max-width: 1100px) {
+  @media (max-width: 700px) {
+    width: 170px;
+    margin: auto;
     margin-bottom: 10%;
-    margin-left: 33%;
     margin-top: 8%;
+    font-size: 14px;
   }
 `;

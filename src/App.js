@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import GamePlayContainer from "./containers/gamePlay";
 import GameSelectionContainer from "./containers/gameSelection";
 import HomeContainer from "./containers/home";
-import QuitModalContainer from "./containers/quitModal";
+import QuitRevealModalContainer from "./containers/quitRevealModal";
 import RulesMoalContainer from "./containers/rulesModal";
+import UserInputModalContainer from "./containers/userInputModal";
 import * as GAME from "./helpers/constants";
 
 export const GameContext = createContext();
@@ -17,15 +18,20 @@ function App() {
   );
   const [level, setLevel] = useState(localStorage.getItem(GAME.LEVEL));
   const [letters, setLetters] = useState(localStorage.getItem(GAME.LETTERS));
-  const [showQuitModal, setShowQuitModal] = useState(false);
+  const [showQuitRevealModal, setShowQuitRevealModal] = useState(false);
   const [showRevealModal, setShowRevealModal] = useState(false);
   const [revealIt, setRevealIt] = useState(false);
+  const [showInput, setShowInput] = useState(false);
+  const [showUserInputModal, setShowUserInputModal] = useState(false);
 
   // these context values will be passed to all the required components as props
   const contextValues = {
+    showInput,
+    setShowInput,
     revealIt,
     setRevealIt,
-    showQuitModal,
+    showQuitRevealModal,
+    setShowUserInputModal,
     showRulesModal,
     showRevealModal,
     setShowRulesModal,
@@ -36,7 +42,7 @@ function App() {
     setLevel,
     letters,
     setLetters,
-    setShowQuitModal,
+    setShowQuitRevealModal,
   };
 
   return (
@@ -46,8 +52,9 @@ function App() {
       <Router>
         {/* modals here */}
         {showRulesModal && <RulesMoalContainer />}
-        {showQuitModal && <QuitModalContainer />}
-        {showRevealModal && <QuitModalContainer />}
+        {showQuitRevealModal && <QuitRevealModalContainer />}
+        {showRevealModal && <QuitRevealModalContainer />}
+        {showUserInputModal && <UserInputModalContainer />}
 
         <Route path="/" exact component={HomeContainer} />
         <Route path="/select" component={GameSelectionContainer} />

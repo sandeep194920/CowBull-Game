@@ -45,3 +45,5 @@ export const GamePlayPageLogo = styled(GameSelectionPageLogo)`
 `;
 
 export const QuitPageLogo = styled(GameSelectionPageLogo)``;
+
+export const UserInputModalLogo = styled(GamePlayPageLogo)``;

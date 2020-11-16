@@ -8,8 +8,9 @@ export default function GamePlayContainer() {
     gameType,
     level,
     letters,
-    setShowQuitModal,
+    setShowQuitRevealModal,
     setShowRevealModal,
+    setShowUserInputModal,
   } = useContext(GameContext);
 
   const res = "00";
@@ -223,28 +224,15 @@ export default function GamePlayContainer() {
           </GamePlay.AttemptResult>
         </GamePlay.AttemptWrapper>
       </GamePlay.AttemptsContainer>
-      {/* <GamePlay.ButtonContainer>
-        {isMobile ? (
-          <>
-            <GamePlay.Button guess>Guess Next Word</GamePlay.Button>
-            <GamePlay.Button reveal>Reveal Word</GamePlay.Button>
-            <GamePlay.Button quit>Quit</GamePlay.Button>
-          </>
-        ) : (
-          <>
-            <GamePlay.Button reveal>Reveal Word</GamePlay.Button>
-            <GamePlay.Button guess>Guess Next Word</GamePlay.Button>
-            <GamePlay.Button quit>Quit</GamePlay.Button>
-          </>
-        )}
-      </GamePlay.ButtonContainer> */}
 
       <GamePlay.ButtonContainer>
         <GamePlay.Button onClick={() => setShowRevealModal(true)} reveal>
           Reveal Word
         </GamePlay.Button>
-        <GamePlay.Button guess>Guess Next Word</GamePlay.Button>
-        <GamePlay.Button onClick={() => setShowQuitModal(true)} quit>
+        <GamePlay.Button onClick={() => setShowUserInputModal(true)} guess>
+          Guess Next Word
+        </GamePlay.Button>
+        <GamePlay.Button onClick={() => setShowQuitRevealModal(true)} quit>
           Quit
         </GamePlay.Button>
       </GamePlay.ButtonContainer>

@@ -5,32 +5,38 @@ import {
   MainText,
   ButtonContainer,
   Button,
-} from "./styles/quitModal";
+} from "./styles/quitRevealModal";
 import { QuitPageLogo as Logo } from "../../commonStyles/logo";
 
-export default function QuitModal({ children, ...restProps }) {
+export default function QuitRevealModal({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 }
 
-QuitModal.Frame = function QuitMoalFrame({ children, ...restProps }) {
+QuitRevealModal.Frame = function QuitRevealModal({ children, ...restProps }) {
   return <Frame {...restProps}>{children}</Frame>;
 };
 
-QuitModal.Logo = function QuitMoalLogo({ ...restProps }) {
+QuitRevealModal.Logo = function QuitRevealModal({ ...restProps }) {
   return <Logo {...restProps} />;
 };
 
-QuitModal.MainText = function QuitMoalMainText({ children, ...restProps }) {
+QuitRevealModal.MainText = function QuitRevealModalMainText({
+  children,
+  ...restProps
+}) {
   return <MainText {...restProps}>{children}</MainText>;
 };
 
-QuitModal.ButtonContainer = function QuitMoalButtonContainer({
+QuitRevealModal.ButtonContainer = function QuitRevealModalButtonContainer({
   children,
   ...restProps
 }) {
   return <ButtonContainer {...restProps}>{children}</ButtonContainer>;
 };
 
-QuitModal.Button = function QuitMoalButton({ children, ...restProps }) {
+QuitRevealModal.Button = function QuitRevealModalButton({
+  children,
+  ...restProps
+}) {
   return <Button {...restProps}>{children}</Button>;
 };

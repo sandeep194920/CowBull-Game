@@ -1,23 +1,17 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { GamePlay } from "../components";
 import logo from "../logo.svg";
 import { GameContext } from "../App";
 
 export default function GamePlayContainer() {
-  const { gameType, level, letters, setShowQuitModal } = useContext(
-    GameContext
-  );
+  const {
+    gameType,
+    level,
+    letters,
+    setShowQuitModal,
+    setShowRevealModal,
+  } = useContext(GameContext);
 
-  const isMobile = window.innerWidth < 1000;
-
-  useEffect(() => {
-    console.log("The inner is " + isMobile);
-  }, [isMobile]);
-
-  console.log("Inner width is " + window.innerWidth);
-  useEffect(() => {
-    console.log(gameType, level, letters);
-  });
   const res = "00";
 
   return (
@@ -246,7 +240,9 @@ export default function GamePlayContainer() {
       </GamePlay.ButtonContainer> */}
 
       <GamePlay.ButtonContainer>
-        <GamePlay.Button reveal>Reveal Word</GamePlay.Button>
+        <GamePlay.Button onClick={() => setShowRevealModal(true)} reveal>
+          Reveal Word
+        </GamePlay.Button>
         <GamePlay.Button guess>Guess Next Word</GamePlay.Button>
         <GamePlay.Button onClick={() => setShowQuitModal(true)} quit>
           Quit

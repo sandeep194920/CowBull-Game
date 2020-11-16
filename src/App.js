@@ -18,11 +18,18 @@ function App() {
   const [level, setLevel] = useState(localStorage.getItem(GAME.LEVEL));
   const [letters, setLetters] = useState(localStorage.getItem(GAME.LETTERS));
   const [showQuitModal, setShowQuitModal] = useState(false);
+  const [showRevealModal, setShowRevealModal] = useState(false);
+  const [revealIt, setRevealIt] = useState(false);
 
   // these context values will be passed to all the required components as props
   const contextValues = {
+    revealIt,
+    setRevealIt,
+    showQuitModal,
     showRulesModal,
+    showRevealModal,
     setShowRulesModal,
+    setShowRevealModal,
     gameType,
     setGameType,
     level,
@@ -35,12 +42,13 @@ function App() {
   return (
     // Game context provides all the contexts necessary for all the components and any of the comps can use the required context values
     <GameContext.Provider value={{ ...contextValues }}>
-      {/* modals here */}
-      {showRulesModal && <RulesMoalContainer />}
-      {showQuitModal && <QuitModalContainer />}
-
       {/* Routes */}
       <Router>
+        {/* modals here */}
+        {showRulesModal && <RulesMoalContainer />}
+        {showQuitModal && <QuitModalContainer />}
+        {showRevealModal && <QuitModalContainer />}
+
         <Route path="/" exact component={HomeContainer} />
         <Route path="/select" component={GameSelectionContainer} />
         <Route path="/play" component={GamePlayContainer} />

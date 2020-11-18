@@ -36,7 +36,6 @@ GamePlay.MainText = function GamePlayMainText({ children, ...restProps }) {
 };
 
 GamePlay.SubText = function GamePlaySubText({ children, ...restProps }) {
-  console.log({ ...restProps });
   return <SubText {...restProps}>{children}</SubText>;
 };
 

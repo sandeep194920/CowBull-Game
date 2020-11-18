@@ -5,7 +5,7 @@ import {
   MainText,
   ButtonContainer,
   Button,
-  Input,
+  //   Input,
   Subtext,
   LettersLeft,
 } from "./styles/userInputModal";
@@ -40,8 +40,8 @@ UserInputModal.Input = function UserInputModalInput({
 }) {
   return (
     <>
-      <Input {...restProps} />
-      <LettersLeft>1/6</LettersLeft>
+      {/* <Input {...restProps} /> */}
+      <LettersLeft {...restProps}>{children} </LettersLeft>
     </>
   );
 };

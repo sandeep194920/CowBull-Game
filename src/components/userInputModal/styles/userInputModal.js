@@ -103,6 +103,16 @@ export const Button = styled.button`
   font-weight: 500;
   letter-spacing: 1px;
   border: none;
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #9ba4b4;
+    &:hover {
+      background-color: #9ba4b4;
+      font-size: 20px;
+      font-weight: normal;
+      letter-spacing: 1px;
+    }
+  }
 
   cursor: pointer;
   outline: none;

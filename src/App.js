@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import GamePlayContainer from "./containers/gamePlay";
 import GameSelectionContainer from "./containers/gameSelection";
@@ -23,14 +23,21 @@ function App() {
   const [revealIt, setRevealIt] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [showUserInputModal, setShowUserInputModal] = useState(false);
+  const [userInput, setUserInput] = useState("");
+  const [myChoices, setMyChoices] = useState([]);
 
   // these context values will be passed to all the required components as props
   const contextValues = {
+    myChoices,
+    setMyChoices,
+    userInput,
+    setUserInput,
     showInput,
     setShowInput,
     revealIt,
     setRevealIt,
     showQuitRevealModal,
+    showUserInputModal,
     setShowUserInputModal,
     showRulesModal,
     showRevealModal,
@@ -44,7 +51,10 @@ function App() {
     setLetters,
     setShowQuitRevealModal,
   };
-
+  useEffect(() => {
+    console.log(myChoices);
+    // console.log(showUserInputModal);
+  }, [myChoices]);
   return (
     // Game context provides all the contexts necessary for all the components and any of the comps can use the required context values
     <GameContext.Provider value={{ ...contextValues }}>

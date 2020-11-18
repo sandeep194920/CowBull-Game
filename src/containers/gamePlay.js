@@ -18,7 +18,11 @@ export default function GamePlayContainer() {
   return (
     <GamePlay>
       <GamePlay.Frame>
-        <GamePlay.Logo src={logo} alt="Logo" />
+        <GamePlay.Logo
+          src={logo}
+          alt="Logo"
+          onClick={() => setShowQuitRevealModal(true)}
+        />
         <GamePlay.WordContainer extraWidthRight>
           <GamePlay.SubText>
             Attempts Left &nbsp;

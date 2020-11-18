@@ -1,31 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { GameContext } from "../App";
 import { Modal, UserInputModal } from "../components";
 import logo from "../logo.svg";
 import Radium from "radium";
 
 function UserInputModalContainer() {
-  const {
-    gameType,
-    setShowUserInputModal,
-    userInput,
-    setUserInput,
-    letters,
-    setMyChoices,
-  } = useContext(GameContext);
-
-  const myChoiceHandler = () => {
-    setMyChoices((prevMyChoices) => [...prevMyChoices, userInput]);
-    setShowUserInputModal(false);
-    setUserInput("");
-  };
-
-  // const inputRef = useRef() as React.MutableRefObject<>;
-  const inputRef = React.createRef();
-  React.useEffect(() => {
-    inputRef.current.focus();
-  }, [inputRef]);
-
   const inputStyles = {
     color: "white",
     marginLeft: "19%",
@@ -46,12 +25,36 @@ function UserInputModalContainer() {
       marginTop: "20%",
     },
   };
+  const {
+    gameType,
+    setShowUserInputModal,
+    userInput,
+    setUserInput,
+    letters,
+    myChoices,
+    setMyChoices,
+  } = useContext(GameContext);
 
+  // to focus on input field
+  const inputRef = useRef();
   const [letterCount, setLetterCount] = useState(0);
 
   const setInputHandler = ({ target }) => {
     setUserInput(target.value);
   };
+
+  // add your word / number handler
+  const myChoiceHandler = () => {
+    localStorage.setObj("userInputs", [...myChoices, userInput]);
+    setMyChoices(localStorage.getObj("userInputs"));
+    setShowUserInputModal(false);
+    setUserInput("");
+  };
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [inputRef]);
+
   useEffect(() => {
     setLetterCount(userInput.length);
   }, [userInput]);

@@ -66,6 +66,8 @@ export default function QuitRevealModalContainer() {
                   onClick={() => {
                     history.push("/");
                     setShowQuitRevealModal(false);
+                    // clears the local storage
+                    localStorage.setObj("userInputs", []);
                   }}
                 >
                   Quit

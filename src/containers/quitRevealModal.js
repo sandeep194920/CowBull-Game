@@ -64,10 +64,10 @@ export default function QuitRevealModalContainer() {
               {showQuitRevealModal && (
                 <QuitRevealModal.Button
                   onClick={() => {
-                    history.push("/");
-                    setShowQuitRevealModal(false);
                     // clears the local storage
                     localStorage.setObj("userInputs", []);
+                    history.push("/");
+                    setShowQuitRevealModal(false);
                   }}
                 >
                   Quit

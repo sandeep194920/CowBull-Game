@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Home } from "../components";
 import logo from "../logo.svg";
 import { GameContext } from "../App";
@@ -6,7 +6,9 @@ import { useHistory } from "react-router-dom";
 import * as GAME from "../helpers/constants";
 
 export default function HomeContainer() {
-  const { setGameType, setShowRulesModal } = useContext(GameContext);
+  const { setGameType, setShowRulesModal, setNewGame } = useContext(
+    GameContext
+  );
   const history = useHistory();
 
   const gameHandler = (game) => {
@@ -16,13 +18,10 @@ export default function HomeContainer() {
       window.localStorage.setItem(GAME.GAME_TYPE, "Number");
     }
     setGameType(localStorage.getItem(GAME.GAME_TYPE));
+    // setting newGame to true because this helps to clear the window and reload the  gamePlay if the game is new to clear the cached words/numbers from the previous game
+    setNewGame(true);
     history.push("/select");
   };
-
-  // when navigated to home page, the userInputs array gets reset to []
-  useEffect(() => {
-    localStorage.setObj("userInputs", []);
-  });
 
   return (
     <Home>

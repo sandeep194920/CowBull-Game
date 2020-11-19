@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { GamePlay } from "../components";
 import logo from "../logo.svg";
 import { GameContext } from "../App";
@@ -12,9 +12,18 @@ export default function GamePlayContainer() {
     setShowRevealModal,
     setShowUserInputModal,
     myChoices,
+    newGame,
   } = useContext(GameContext);
 
   // const res = "00";
+
+  //reload the window to clear cached words/numbers from previous game
+  useEffect(() => {
+    console.log("new game -> ", newGame);
+    if (newGame) {
+      window.location.reload();
+    }
+  }, [newGame]);
 
   return (
     <GamePlay>
@@ -66,33 +75,33 @@ export default function GamePlayContainer() {
       </GamePlay.Frame>
 
       <GamePlay.AttemptsContainer>
-        {myChoices.map((myChoice, index) => {
-          const letters = [...myChoice];
-          return (
-            <GamePlay.AttemptWrapper key={index + myChoice}>
-              <GamePlay.AttemptNumber>{index + 1}.</GamePlay.AttemptNumber>
+        {myChoices &&
+          myChoices.map((myChoice, index) => {
+            const letters = [...myChoice];
+            return (
+              <GamePlay.AttemptWrapper key={index + myChoice}>
+                <GamePlay.AttemptNumber>{index + 1}.</GamePlay.AttemptNumber>
 
-              <GamePlay.LettersContainer>
-                {letters.map((letter, index) => (
-                  <GamePlay.LetterContainer key={letter + index}>
-                    {letter}
-                  </GamePlay.LetterContainer>
-                ))}
+                <GamePlay.LettersContainer>
+                  {letters.map((letter, index) => (
+                    <GamePlay.LetterContainer key={letter + index}>
+                      {letter}
+                    </GamePlay.LetterContainer>
+                  ))}
 
-                {/* <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
+                  {/* <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
                 <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
                 <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
                 <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
                   N
                 </GamePlay.LetterContainer>
                 <GamePlay.LetterContainer>G</GamePlay.LetterContainer> */}
-              </GamePlay.LettersContainer>
+                </GamePlay.LettersContainer>
 
-              <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
-            </GamePlay.AttemptWrapper>
-          );
-        })}
-
+                <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
+              </GamePlay.AttemptWrapper>
+            );
+          })}
         {/* <GamePlay.AttemptWrapper>
           <GamePlay.AttemptNumber>1.</GamePlay.AttemptNumber>
           <GamePlay.LettersContainer>

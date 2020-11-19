@@ -40,8 +40,11 @@ function App() {
   const [myChoices, setMyChoices] = useState(localStorage.getObj("userInputs"));
   // const [myChoices, setMyChoices] = useState([]);
 
+  const [newGame, setNewGame] = useState(false);
   // these context values will be passed to all the required components as props
   const contextValues = {
+    newGame,
+    setNewGame,
     myChoices,
     setMyChoices,
     userInput,
@@ -67,6 +70,7 @@ function App() {
     console.log(myChoices);
     // console.log(showUserInputModal);
   }, [myChoices]);
+
   return (
     // Game context provides all the contexts necessary for all the components and any of the comps can use the required context values
     <GameContext.Provider value={{ ...contextValues }}>

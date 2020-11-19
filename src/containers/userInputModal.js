@@ -45,7 +45,8 @@ function UserInputModalContainer() {
 
   // add your word / number handler
   const myChoiceHandler = () => {
-    localStorage.setObj("userInputs", [...myChoices, userInput]);
+    if (myChoices) localStorage.setObj("userInputs", [...myChoices, userInput]);
+    else localStorage.setObj("userInputs", [userInput]);
     setMyChoices(localStorage.getObj("userInputs"));
     setShowUserInputModal(false);
     setUserInput("");

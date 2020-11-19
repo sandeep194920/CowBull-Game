@@ -11,9 +11,10 @@ export default function GamePlayContainer() {
     setShowQuitRevealModal,
     setShowRevealModal,
     setShowUserInputModal,
+    myChoices,
   } = useContext(GameContext);
 
-  const res = "00";
+  // const res = "00";
 
   return (
     <GamePlay>
@@ -65,7 +66,34 @@ export default function GamePlayContainer() {
       </GamePlay.Frame>
 
       <GamePlay.AttemptsContainer>
-        <GamePlay.AttemptWrapper>
+        {myChoices.map((myChoice, index) => {
+          const letters = [...myChoice];
+          return (
+            <GamePlay.AttemptWrapper key={index + myChoice}>
+              <GamePlay.AttemptNumber>{index + 1}.</GamePlay.AttemptNumber>
+
+              <GamePlay.LettersContainer>
+                {letters.map((letter, index) => (
+                  <GamePlay.LetterContainer key={letter + index}>
+                    {letter}
+                  </GamePlay.LetterContainer>
+                ))}
+
+                {/* <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
+                <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
+                <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
+                <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
+                  N
+                </GamePlay.LetterContainer>
+                <GamePlay.LetterContainer>G</GamePlay.LetterContainer> */}
+              </GamePlay.LettersContainer>
+
+              <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
+            </GamePlay.AttemptWrapper>
+          );
+        })}
+
+        {/* <GamePlay.AttemptWrapper>
           <GamePlay.AttemptNumber>1.</GamePlay.AttemptNumber>
           <GamePlay.LettersContainer>
             <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
@@ -77,156 +105,7 @@ export default function GamePlayContainer() {
             <GamePlay.LetterContainer>G</GamePlay.LetterContainer>
           </GamePlay.LettersContainer>
           <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
-        </GamePlay.AttemptWrapper>
-
-        <GamePlay.AttemptWrapper>
-          <GamePlay.AttemptNumber>1.</GamePlay.AttemptNumber>
-          <GamePlay.LettersContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
-              N
-            </GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>G</GamePlay.LetterContainer>
-          </GamePlay.LettersContainer>
-          <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
-        </GamePlay.AttemptWrapper>
-
-        <GamePlay.AttemptWrapper>
-          <GamePlay.AttemptNumber>1.</GamePlay.AttemptNumber>
-          <GamePlay.LettersContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
-              N
-            </GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>G</GamePlay.LetterContainer>
-          </GamePlay.LettersContainer>
-          <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
-        </GamePlay.AttemptWrapper>
-
-        <GamePlay.AttemptWrapper>
-          <GamePlay.AttemptNumber>1.</GamePlay.AttemptNumber>
-          <GamePlay.LettersContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
-              N
-            </GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>G</GamePlay.LetterContainer>
-          </GamePlay.LettersContainer>
-          <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
-        </GamePlay.AttemptWrapper>
-
-        <GamePlay.AttemptWrapper>
-          <GamePlay.AttemptNumber>1.</GamePlay.AttemptNumber>
-          <GamePlay.LettersContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
-              N
-            </GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>G</GamePlay.LetterContainer>
-          </GamePlay.LettersContainer>
-          <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
-        </GamePlay.AttemptWrapper>
-
-        <GamePlay.AttemptWrapper>
-          <GamePlay.AttemptNumber>1.</GamePlay.AttemptNumber>
-          <GamePlay.LettersContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
-              N
-            </GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>G</GamePlay.LetterContainer>
-          </GamePlay.LettersContainer>
-          <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
-        </GamePlay.AttemptWrapper>
-
-        <GamePlay.AttemptWrapper>
-          <GamePlay.AttemptNumber>1.</GamePlay.AttemptNumber>
-          <GamePlay.LettersContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
-              N
-            </GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>G</GamePlay.LetterContainer>
-          </GamePlay.LettersContainer>
-          <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
-        </GamePlay.AttemptWrapper>
-
-        <GamePlay.AttemptWrapper>
-          <GamePlay.AttemptNumber>1.</GamePlay.AttemptNumber>
-          <GamePlay.LettersContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
-              N
-            </GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>G</GamePlay.LetterContainer>
-          </GamePlay.LettersContainer>
-          <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
-        </GamePlay.AttemptWrapper>
-
-        <GamePlay.AttemptWrapper>
-          <GamePlay.AttemptNumber>1.</GamePlay.AttemptNumber>
-          <GamePlay.LettersContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
-              N
-            </GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>G</GamePlay.LetterContainer>
-          </GamePlay.LettersContainer>
-          <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
-        </GamePlay.AttemptWrapper>
-        <GamePlay.AttemptWrapper>
-          <GamePlay.AttemptNumber>2.</GamePlay.AttemptNumber>
-          <GamePlay.LettersContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
-              N
-            </GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>G</GamePlay.LetterContainer>
-          </GamePlay.LettersContainer>
-          <GamePlay.AttemptResult>2C</GamePlay.AttemptResult>
-        </GamePlay.AttemptWrapper>
-
-        <GamePlay.AttemptWrapper>
-          <GamePlay.AttemptNumber>3.</GamePlay.AttemptNumber>
-          <GamePlay.LettersContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>K</GamePlay.LetterContainer>
-            <GamePlay.LetterContainer style={{ color: "#9BA4B4" }}>
-              N
-            </GamePlay.LetterContainer>
-            <GamePlay.LetterContainer>G</GamePlay.LetterContainer>
-          </GamePlay.LettersContainer>
-          <GamePlay.AttemptResult
-            style={{
-              color: res.includes("C")
-                ? "red"
-                : res.includes("B")
-                ? "blue"
-                : "orange",
-            }}
-          >
-            {res}
-          </GamePlay.AttemptResult>
-        </GamePlay.AttemptWrapper>
+        </GamePlay.AttemptWrapper> */}
       </GamePlay.AttemptsContainer>
 
       <GamePlay.ButtonContainer>

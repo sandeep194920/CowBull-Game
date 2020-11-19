@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Home } from "../components";
 import logo from "../logo.svg";
 import { GameContext } from "../App";
@@ -18,6 +18,12 @@ export default function HomeContainer() {
     setGameType(localStorage.getItem(GAME.GAME_TYPE));
     history.push("/select");
   };
+
+  // when navigated to home page, the userInputs array gets reset to []
+  useEffect(() => {
+    localStorage.setObj("userInputs", []);
+  });
+
   return (
     <Home>
       <Home.Frame>

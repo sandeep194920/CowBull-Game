@@ -44,6 +44,11 @@ export const GamePlayPageLogo = styled(GameSelectionPageLogo)`
   }
 `;
 
-export const QuitPageLogo = styled(GameSelectionPageLogo)``;
+export const QuitPageLogo = styled(GameSelectionPageLogo)`
+  @media (max-width: 700px) {
+    margin-top: 3px;
+    display: none;
+  }
+`;
 
 export const UserInputModalLogo = styled(GamePlayPageLogo)``;

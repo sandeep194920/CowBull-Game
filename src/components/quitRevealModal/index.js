@@ -5,6 +5,7 @@ import {
   MainText,
   ButtonContainer,
   Button,
+  SubText,
 } from "./styles/quitRevealModal";
 import { QuitPageLogo as Logo } from "../../commonStyles/logo";
 
@@ -25,6 +26,13 @@ QuitRevealModal.MainText = function QuitRevealModalMainText({
   ...restProps
 }) {
   return <MainText {...restProps}>{children}</MainText>;
+};
+
+QuitRevealModal.SubText = function QuitRevealModalSubText({
+  children,
+  ...restProps
+}) {
+  return <SubText {...restProps}>{children}</SubText>;
 };
 
 QuitRevealModal.ButtonContainer = function QuitRevealModalButtonContainer({

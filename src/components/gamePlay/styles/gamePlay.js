@@ -73,7 +73,7 @@ export const AttemptsContainer = styled.div`
 
 export const AttemptWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   /* background-color: orange; */
   align-items: center;
   width: 25%;
@@ -97,7 +97,7 @@ export const AttemptResult = styled.h2`
   font-weight: 700;
   margin-left: 2%;
   font-weight: 700;
-  font-size: 1.4em;
+  font-size: 1.1em;
   letter-spacing: 3px;
   @media (max-width: 700px) {
     font-size: 1em;
@@ -128,6 +128,7 @@ export const LetterContainer = styled.p`
   width: 40px;
   text-align: center;
   background-color: #394867;
+  text-transform: uppercase;
   /* background-color: #9ba4b4; */
   font-weight: 700;
   @media (max-width: 700px) {

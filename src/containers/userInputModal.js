@@ -26,8 +26,12 @@ function UserInputModalContainer() {
     },
   };
   const {
+    wordExistError,
+    setWordExistError,
     gameType,
     setShowUserInputModal,
+    inputDuplicatesError,
+    setInputDuplicateError,
     userInput,
     setUserInput,
     letters,
@@ -41,10 +45,33 @@ function UserInputModalContainer() {
 
   const setInputHandler = ({ target }) => {
     setUserInput(target.value);
+    setInputDuplicateError(false);
+    setWordExistError(false);
   };
+
+  // this checks for duplicates in the userInput
+  function hasDuplicates(array) {
+    return new Set(array).size !== array.length;
+  }
 
   // add your word / number handler
   const myChoiceHandler = () => {
+    // check if user input has repeatative letters
+    console.log("The user Input is " + userInput);
+    hasDuplicates([...userInput]);
+    if (hasDuplicates([...userInput])) {
+      console.log("has duplicates");
+      setInputDuplicateError(true);
+      return;
+    }
+
+    // if the word entered is already entered before then we should get an error
+    if (myChoices.includes(userInput)) {
+      setWordExistError(true);
+      return;
+    }
+
+    // after confirming there are no repeatative letters, we can now store the userInputs in myChoices array
     if (myChoices) localStorage.setObj("userInputs", [...myChoices, userInput]);
     else localStorage.setObj("userInputs", [userInput]);
     setMyChoices(localStorage.getObj("userInputs"));
@@ -76,10 +103,21 @@ function UserInputModalContainer() {
               Please input your{" "}
               <span style={{ color: "#ffa62b" }}>{gameType}</span>
             </UserInputModal.MainText>
+
             <UserInputModal.Subtext>
               Attempt&nbsp; <span style={{ color: "#ffa62b" }}>14</span>
             </UserInputModal.Subtext>
           </UserInputModal.Frame>
+          {inputDuplicatesError && (
+            <UserInputModal.Subtext error>
+              Letters should not be repeated
+            </UserInputModal.Subtext>
+          )}
+          {wordExistError && (
+            <UserInputModal.Subtext error>
+              {userInput.toUpperCase()} already exists
+            </UserInputModal.Subtext>
+          )}
           {/* <UserInputModal.Input
             type="text"
             ref={inputRef}
@@ -95,6 +133,7 @@ function UserInputModalContainer() {
             maxLength={letters}
             type={gameType === "Number" ? "number" : "text"}
           />
+
           <UserInputModal.Input>
             {" "}
             {letterCount}/{letters}

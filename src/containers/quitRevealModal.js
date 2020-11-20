@@ -38,10 +38,13 @@ export default function QuitRevealModalContainer() {
               </QuitRevealModal.MainText>
             )}
             {revealIt && (
-              <QuitRevealModal.MainText>
-                Alright, the hidden {gameType} is{" "}
-                <span style={{ color: "#ffa62b" }}>W H A L E</span>
-              </QuitRevealModal.MainText>
+              <>
+                <QuitRevealModal.MainText>
+                  Alright, the hidden {gameType} is
+                  {/* <span style={{ color: "#ffa62b" }}>W H A L E</span> */}
+                </QuitRevealModal.MainText>
+                <QuitRevealModal.SubText>WHALE</QuitRevealModal.SubText>
+              </>
             )}
           </QuitRevealModal.Frame>
 
@@ -76,6 +79,7 @@ export default function QuitRevealModalContainer() {
               {showRevealModal && (
                 <QuitRevealModal.Button
                   onClick={() => {
+                    localStorage.setObj("userInputs", []);
                     setRevealIt(true);
                     history.push("/");
                   }}

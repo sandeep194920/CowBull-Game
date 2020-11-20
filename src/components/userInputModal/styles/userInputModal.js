@@ -86,11 +86,23 @@ export const Subtext = styled.p`
   font-size: 0.9em;
   color: white;
   letter-spacing: 1.5px;
-  margin-left: 12px;
+  /* margin-left: 12px; */
   @media (max-width: 700px) {
     letter-spacing: 1px;
     font-size: 0.8em;
+    margin-left: ${({ error }) => error && "15px"};
+    margin-top: ${({ error }) => error && "5px"};
   }
+  ${({ error }) =>
+    error
+      ? {
+          marginLeft: "40%",
+          marginTop: "-10px",
+          color: "red",
+        }
+      : {
+          marginLeft: "12px",
+        }}
 `;
 
 export const Button = styled.button`
@@ -126,9 +138,9 @@ export const Button = styled.button`
 
   &:hover {
     background-color: #e6a347;
-    font-weight: 700;
-    font-size: 22px;
-    letter-spacing: 0px;
+    /* font-weight: 700; */
+    /* font-size: 22px; */
+    /* letter-spacing: 0px; */
     transition: background-color 0.3s;
   }
   @media (max-width: 700px) {

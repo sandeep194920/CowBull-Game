@@ -24,6 +24,7 @@ export const Container = styled.div`
 export const Frame = styled.div`
   display: flex;
   flex-direction: row;
+  /* background: orange; */
 `;
 
 export const MainText = styled.h1`
@@ -34,7 +35,7 @@ export const MainText = styled.h1`
 
   @media (max-width: 1100px) {
     font-size: 1em;
-    margin-left: 15%;
+    margin-left: 25%;
     margin-top: 15%;
   }
   @media (max-width: 700px) {
@@ -42,8 +43,21 @@ export const MainText = styled.h1`
     letter-spacing: 0.3px;
     line-height: 2em;
     margin-right: 1%;
-    margin-left: 5%;
+    margin-left: 20%;
     margin-top: 10%;
+  }
+`;
+
+export const SubText = styled.h3`
+  font-size: 1.5em;
+  color: #ffa62b;
+  position: absolute;
+  top: 35%;
+  left: 45%;
+  letter-spacing: 3px;
+  @media (max-width: 700px) {
+    top: 25%;
+    left: 35%;
   }
 `;
 

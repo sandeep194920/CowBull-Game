@@ -6,6 +6,7 @@ import HomeContainer from "./containers/home";
 import QuitRevealModalContainer from "./containers/quitRevealModal";
 import RulesMoalContainer from "./containers/rulesModal";
 import UserInputModalContainer from "./containers/userInputModal";
+import WonLostModalContainer from "./containers/wonLostModal";
 import GameLogic from "./gameLogic";
 import * as GAME from "./helpers/constants";
 
@@ -49,8 +50,27 @@ function App() {
 
   const [wordExistError, setWordExistError] = useState(false);
 
+  const [gameOver, setGameOver] = useState(false);
+
+  const [attempts, setAttempts] = useState(localStorage.getItem("attempts"));
+
+  const [attemptsPlayed, setAttemptsPlayed] = useState(
+    localStorage.getItem("attemptsPlayed")
+  );
+
+  const [showWonLostModal, setShowWonLostModal] = useState(false);
+  const [wonTheGame, setWonTheGame] = useState(false); // true -> won, false -> lost . Called in
+
   // these context values will be passed to all the required components as props
   const contextValues = {
+    attemptsPlayed,
+    setAttemptsPlayed,
+    gameOver,
+    setGameOver,
+    wonTheGame,
+    setWonTheGame,
+    attempts,
+    setAttempts,
     wordExistError,
     setWordExistError,
     inputDuplicatesError,
@@ -65,6 +85,8 @@ function App() {
     setUserInput,
     revealIt,
     setRevealIt,
+    showWonLostModal,
+    setShowWonLostModal,
     showQuitRevealModal,
     showUserInputModal,
     setShowUserInputModal,
@@ -81,9 +103,9 @@ function App() {
     setShowQuitRevealModal,
   };
   useEffect(() => {
-    console.log(myChoices);
+    console.log(attempts);
     // console.log(showUserInputModal);
-  }, [myChoices]);
+  }, [attempts]);
 
   console.log(GameLogic("sky", "sku"));
 
@@ -97,6 +119,7 @@ function App() {
         {showQuitRevealModal && <QuitRevealModalContainer />}
         {showRevealModal && <QuitRevealModalContainer />}
         {showUserInputModal && <UserInputModalContainer />}
+        {showWonLostModal && <WonLostModalContainer />}
 
         <Route path="/" exact component={HomeContainer} />
         <Route path="/select" component={GameSelectionContainer} />

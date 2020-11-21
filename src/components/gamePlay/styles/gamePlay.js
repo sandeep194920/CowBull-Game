@@ -91,6 +91,9 @@ export const AttemptNumber = styled.p`
 `;
 
 export const AttemptResult = styled.h2`
+  display: flex;
+  justify-content: space-around;
+  width: 4em;
   /* background-color: yellow; */
   color: #ffe05d;
   /* color: #b8de6f; */
@@ -99,6 +102,7 @@ export const AttemptResult = styled.h2`
   font-weight: 700;
   font-size: 1.1em;
   letter-spacing: 3px;
+  /* background-color: orange; */
   @media (max-width: 700px) {
     font-size: 1em;
   }
@@ -140,9 +144,20 @@ export const LetterContainer = styled.p`
 `;
 
 export const SubText = styled.p`
-  color: white;
-  letter-spacing: 1px;
+  margin-top: ${({ gameOver }) => gameOver && "7em"};
+  margin-left: ${({ gameOver }) => gameOver && "-12em"};
+  color: ${({ gameOver }) => (gameOver ? "#ffa62b" : "white")};
+  color: ${({ cow }) => cow && "#b8de6f"};
+  color: ${({ bull }) => bull && "#ffe05d"};
   font-size: 0.9em;
+
+  /* font-size: ${({ bull }) => bull && "1.1em"};
+  font-size: ${({ cow }) => cow && "1.1em"}; */
+  /* 
+  color: #ffe05d;
+  color: #b8de6f; */
+
+  letter-spacing: 1px;
   &:before {
     content: "Difficulty ";
     display: ${({ difficulty }) => (difficulty ? "visible " : "none")};
@@ -205,6 +220,25 @@ export const Button = styled.button`
   font-weight: 600;
   cursor: pointer;
   outline: none;
+  &:disabled {
+    background-color: #9ba4b4;
+    color: white;
+    &:hover {
+      background-color: #9ba4b4;
+      cursor: not-allowed;
+    }
+  }
+  @media (max-width: 1300px) {
+    width: ${({ reveal }) => reveal && "150px"};
+    width: ${({ quit }) => quit && "100px"};
+    width: ${({ guess }) => guess && "400px"};
+    /* display: none; */
+    padding: 10px;
+    margin-bottom: 30px;
+    margin-right: 30px;
+    font-size: 0.8em;
+  }
+
   @media (max-width: 700px) {
     width: ${({ reveal }) => reveal && "150px"};
     width: ${({ quit }) => quit && "100px"};

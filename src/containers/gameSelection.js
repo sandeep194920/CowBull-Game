@@ -4,11 +4,18 @@ import logo from "../logo.svg";
 import { GameContext } from "../App";
 import { useHistory } from "react-router-dom";
 import * as GAME from "../helpers/constants";
+import { gameTypes as attemptsGetter } from "../helpers/gameTypes";
 
 export default function GameSelectionContainer() {
-  const { gameType, level, setLevel, letters, setLetters } = useContext(
-    GameContext
-  );
+  const {
+    gameType,
+    level,
+    setLevel,
+    letters,
+    setLetters,
+    setAttempts,
+    setAttemptsPlayed,
+  } = useContext(GameContext);
   const history = useHistory();
   const [levelSelected, setLevelSelected] = useState(null);
   const [lettersSelected, setLettersSelected] = useState(null);
@@ -23,15 +30,29 @@ export default function GameSelectionContainer() {
     console.log(
       `The game type is ${gameType}, the level is ${level} and the length is ${letters}`
     );
+    // get the attempts based on selection of difficulty level and letters
+    // const attempts = attemptsGetter[`${letters}`][`${level}`];
+    const attempts =
+      attemptsGetter[`${Number(letters)}`][`${level.toLowerCase()}`][
+        "attempts"
+      ];
+    console.log(attempts);
+
+    setAttempts(localStorage.setItem("attempts", Number(attempts)));
+    localStorage.setItem("attemptsPlayed", Number(0));
+    setAttemptsPlayed(localStorage.getItem("attemptsPlayed"));
+
     history.push("/play");
   };
 
   const setLevelHandler = ({ target }) => {
+    console.log(`The target value is ${target.value}`);
     localStorage.setItem(GAME.LEVEL, target.value);
     setLevel(localStorage.getItem(GAME.LEVEL));
   };
 
   const setLettersHandler = ({ target }) => {
+    console.log(`The target value is ${target.value}`);
     localStorage.setItem(GAME.LETTERS, target.value);
     setLetters(localStorage.getItem(GAME.LETTERS));
   };

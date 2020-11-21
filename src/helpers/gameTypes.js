@@ -1,18 +1,18 @@
 export const gameTypes = {
-  letters3: {
+  3: {
     easy: {
-      attempts: 12,
+      attempts: 10,
     },
     medium: {
-      attempts: 9,
+      attempts: 8,
     },
     hard: {
-      attempts: 7,
+      attempts: 6,
     },
   },
-  letters4: {
+  4: {
     easy: {
-      attempts: 15,
+      attempts: 12,
     },
     medium: {
       attempts: 10,
@@ -21,20 +21,20 @@ export const gameTypes = {
       attempts: 8,
     },
   },
-  letters5: {
+  5: {
     easy: {
-      attempts: 15,
+      attempts: 14,
     },
     medium: {
       attempts: 12,
     },
     hard: {
-      attempts: 10,
+      attempts: 9,
     },
   },
-  letters6: {
+  6: {
     easy: {
-      attempts: 17,
+      attempts: 15,
     },
     medium: {
       attempts: 12,

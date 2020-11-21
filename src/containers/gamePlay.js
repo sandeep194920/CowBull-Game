@@ -3,22 +3,28 @@ import { GamePlay } from "../components";
 import logo from "../logo.svg";
 import { GameContext } from "../App";
 import GameLogic from "../gameLogic";
+import { useHistory } from "react-router-dom";
 
 export default function GamePlayContainer() {
   const {
+    gameOver,
+    setGameOver,
+    attempts,
+    attemptsPlayed,
     gameType,
     level,
     letters,
+    setWonTheGame,
     setShowQuitRevealModal,
     setShowRevealModal,
     setShowUserInputModal,
+    setShowWonLostModal,
     myChoices,
     newGame,
     hiddenWord,
   } = useContext(GameContext);
 
-  // const res = "00";
-  // const = { cow: 1, bull: 0 };
+  const history = useHistory();
   //reload the window to clear cached words/numbers from previous game
   useEffect(() => {
     console.log("new game -> ", newGame);
@@ -33,6 +39,45 @@ export default function GamePlayContainer() {
       setShowUserInputModal(true);
     }
   }, [myChoices, setShowUserInputModal]);
+
+  // check for win
+  useEffect(() => {
+    console.log(
+      `userInput is ${myChoices[myChoices.length - 1]} from useEffect gameplay`
+    );
+    console.log(`The hidden word is ${hiddenWord}`);
+    if (myChoices.length > 0) {
+      const checkAgainst = myChoices[myChoices.length - 1];
+      const checkForWin = GameLogic(
+        hiddenWord.toUpperCase(),
+        checkAgainst.toUpperCase()
+      );
+      if (checkForWin.bull === 3) {
+        setWonTheGame(true);
+        setShowWonLostModal(true);
+        setGameOver(true);
+      }
+      if (attempts === attemptsPlayed) {
+        setWonTheGame(false);
+        setShowWonLostModal(true);
+        setGameOver(true);
+      }
+    }
+  }, [
+    myChoices,
+    hiddenWord,
+    setGameOver,
+    setShowWonLostModal,
+    setWonTheGame,
+    attempts,
+    attemptsPlayed,
+  ]);
+
+  const gameOverHandler = () => {
+    history.push("/");
+    localStorage.setObj("userInputs", []);
+    setGameOver(false);
+  };
 
   return (
     <GamePlay>
@@ -51,7 +96,7 @@ export default function GamePlayContainer() {
                 fontWeight: "bold",
               }}
             >
-              14
+              {attempts - attemptsPlayed}
             </span>
           </GamePlay.SubText>
           <GamePlay.SubText>
@@ -74,6 +119,11 @@ export default function GamePlayContainer() {
           <span style={{ color: "#ffa62b" }}>{letters} </span> Letter{" "}
           <span style={{ color: "#ffa62b" }}>{gameType} </span>
         </GamePlay.MainText>
+        {gameOver && (
+          <GamePlay.SubText gameOver>
+            The {gameType} is {hiddenWord.toUpperCase()}
+          </GamePlay.SubText>
+        )}
         <GamePlay.WordContainer difficulty>
           <GamePlay.SubText difficulty>
             <span style={{ color: "#ffa62b", fontWeight: "bold" }}>
@@ -87,7 +137,11 @@ export default function GamePlayContainer() {
         {myChoices &&
           myChoices.map((myChoice, index) => {
             // word match logic here to give cows and bulls
-            const result = GameLogic(hiddenWord, myChoice);
+            const result = GameLogic(
+              hiddenWord.toUpperCase(),
+              myChoice.toUpperCase()
+            );
+
             const letters = [...myChoice];
             return (
               <GamePlay.AttemptWrapper key={index + myChoice}>
@@ -111,9 +165,10 @@ export default function GamePlayContainer() {
 
                 {/* <GamePlay.AttemptResult>2B,3C</GamePlay.AttemptResult> */}
                 <GamePlay.AttemptResult>
-                  <span style={{ color: "#cad315" }}>{result.bull}B</span>{" "}
-                  &nbsp;
-                  <span style={{ color: "#e4e978" }}>{result.cow}C</span>
+                  {/* <span style={{ color: "#cad315" }}>{result.bull}B</span>
+                  <span style={{ color: "#e4e978" }}>{result.cow}C</span> */}
+                  <GamePlay.SubText bull>{result.bull}B</GamePlay.SubText>
+                  <GamePlay.SubText cow>{result.cow}C</GamePlay.SubText>
                 </GamePlay.AttemptResult>
               </GamePlay.AttemptWrapper>
             );
@@ -132,10 +187,20 @@ export default function GamePlayContainer() {
       </GamePlay.AttemptsContainer>
 
       <GamePlay.ButtonContainer>
-        <GamePlay.Button onClick={() => setShowRevealModal(true)} reveal>
-          Reveal Word
-        </GamePlay.Button>
-        <GamePlay.Button onClick={() => setShowUserInputModal(true)} guess>
+        {gameOver ? (
+          <GamePlay.Button onClick={gameOverHandler} reveal>
+            New Game
+          </GamePlay.Button>
+        ) : (
+          <GamePlay.Button onClick={() => setShowRevealModal(true)} reveal>
+            Reveal Word
+          </GamePlay.Button>
+        )}
+        <GamePlay.Button
+          disabled={gameOver}
+          onClick={() => setShowUserInputModal(true)}
+          guess
+        >
           Guess Next Word
         </GamePlay.Button>
         <GamePlay.Button onClick={() => setShowQuitRevealModal(true)} quit>

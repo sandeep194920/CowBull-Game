@@ -5,3 +5,4 @@ export { default as GamePlay } from "./gamePlay";
 export { default as Modal } from "./modal";
 export { default as QuitRevealModal } from "./quitRevealModal";
 export { default as UserInputModal } from "./userInputModal";
+export { default as WonLostModal } from "./wonLostModal";

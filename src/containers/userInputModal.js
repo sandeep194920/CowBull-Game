@@ -18,14 +18,30 @@ function UserInputModalContainer() {
     fontSize: "1.2em",
     letterSpacing: "4px",
     textTransform: "uppercase",
+    "@media (max-width: 1400px)": {
+      width: "14em",
+      padding: "8px",
+      marginLeft: "15%",
+      marginTop: "10%",
+    },
     "@media (max-width: 1100px)": {
+      width: "13em",
+      padding: "8px",
+      marginLeft: "20%",
+      marginTop: "15%",
+    },
+
+    "@media (max-width: 800px)": {
       width: "9em",
       padding: "8px",
-      marginLeft: "10%",
-      marginTop: "20%",
+      marginLeft: "15%",
+      marginTop: "13%",
     },
   };
   const {
+    attempts,
+    // attemptsPlayed,
+    setAttemptsPlayed,
     wordExistError,
     setWordExistError,
     gameType,
@@ -44,7 +60,7 @@ function UserInputModalContainer() {
   const [letterCount, setLetterCount] = useState(0);
 
   const setInputHandler = ({ target }) => {
-    setUserInput(target.value);
+    setUserInput(target.value.toUpperCase());
     setInputDuplicateError(false);
     setWordExistError(false);
   };
@@ -67,6 +83,7 @@ function UserInputModalContainer() {
 
     // if the word entered is already entered before then we should get an error
     if (myChoices.includes(userInput)) {
+      console.log("Here is the error");
       setWordExistError(true);
       return;
     }
@@ -77,6 +94,11 @@ function UserInputModalContainer() {
     setMyChoices(localStorage.getObj("userInputs"));
     setShowUserInputModal(false);
     setUserInput("");
+    localStorage.setItem(
+      "attemptsPlayed",
+      Number(localStorage.getItem("attemptsPlayed")) + 1
+    );
+    setAttemptsPlayed(localStorage.getItem("attemptsPlayed"));
   };
 
   useEffect(() => {
@@ -93,6 +115,8 @@ function UserInputModalContainer() {
         onClick={() => {
           setShowUserInputModal(false);
           setUserInput("");
+          setInputDuplicateError(false);
+          setWordExistError(false);
         }}
       />
       <Modal.Content>
@@ -104,19 +128,22 @@ function UserInputModalContainer() {
               <span style={{ color: "#ffa62b" }}>{gameType}</span>
             </UserInputModal.MainText>
 
-            <UserInputModal.Subtext>
-              Attempt&nbsp; <span style={{ color: "#ffa62b" }}>14</span>
-            </UserInputModal.Subtext>
+            <UserInputModal.SubText>
+              Attempt&nbsp;{" "}
+              <span style={{ color: "#ffa62b" }}>{myChoices.length + 1} </span>
+              /&nbsp;
+              {attempts}
+            </UserInputModal.SubText>
           </UserInputModal.Frame>
           {inputDuplicatesError && (
-            <UserInputModal.Subtext error>
+            <UserInputModal.SubText error>
               Letters should not be repeated
-            </UserInputModal.Subtext>
+            </UserInputModal.SubText>
           )}
           {wordExistError && (
-            <UserInputModal.Subtext error>
+            <UserInputModal.SubText error>
               {userInput.toUpperCase()} already exists
-            </UserInputModal.Subtext>
+            </UserInputModal.SubText>
           )}
           {/* <UserInputModal.Input
             type="text"
@@ -150,6 +177,8 @@ function UserInputModalContainer() {
               onClick={() => {
                 setShowUserInputModal(false);
                 setUserInput("");
+                setInputDuplicateError(false);
+                setWordExistError(false);
               }}
             >
               {" "}

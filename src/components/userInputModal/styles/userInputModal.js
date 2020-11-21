@@ -54,6 +54,18 @@ export const ButtonContainer = styled.div`
   margin: auto;
   margin-top: 5%;
   /* background-color: orange; */
+
+  @media (max-width: 1100px) {
+    align-items: center;
+    margin-top: 11%;
+    width: 90%;
+  }
+  @media (max-width: 1000px) {
+    align-items: center;
+    margin-top: 20%;
+    width: 90%;
+  }
+
   @media (max-width: 700px) {
     align-items: center;
     margin-top: 25%;
@@ -74,6 +86,10 @@ export const Input = styled.input`
   font-size: 1.2em;
   letter-spacing: 4px;
   text-transform: uppercase;
+  @media (max-width: 1200px) {
+    width: 8em;
+    /* background-color: black; */
+  }
   @media (max-width: 1000px) {
     width: 8em;
     padding: 8px;
@@ -82,7 +98,7 @@ export const Input = styled.input`
   }
 `;
 
-export const Subtext = styled.p`
+export const SubText = styled.p`
   font-size: 0.9em;
   color: white;
   letter-spacing: 1.5px;
@@ -96,7 +112,7 @@ export const Subtext = styled.p`
   ${({ error }) =>
     error
       ? {
-          marginLeft: "40%",
+          marginLeft: "35%",
           marginTop: "-10px",
           color: "red",
         }
@@ -143,6 +159,16 @@ export const Button = styled.button`
     /* letter-spacing: 0px; */
     transition: background-color 0.3s;
   }
+
+  @media (max-width: 1300px) {
+    padding: 10px;
+    width: 130px;
+    margin: auto;
+    margin-bottom: 10%;
+    margin-top: 8%;
+    font-size: 14px;
+  }
+
   @media (max-width: 700px) {
     padding: 10px;
     width: 150px;

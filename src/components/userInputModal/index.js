@@ -6,7 +6,7 @@ import {
   ButtonContainer,
   Button,
   //   Input,
-  Subtext,
+  SubText,
   LettersLeft,
 } from "./styles/userInputModal";
 
@@ -60,9 +60,9 @@ UserInputModal.Button = function UserInputModalButton({
   return <Button {...restProps}>{children} </Button>;
 };
 
-UserInputModal.Subtext = function UserInputModalSubtext({
+UserInputModal.SubText = function UserInputModalSubText({
   children,
   ...restProps
 }) {
-  return <Subtext {...restProps}>{children} </Subtext>;
+  return <SubText {...restProps}>{children} </SubText>;
 };

@@ -22,7 +22,7 @@ export default function RulesModalContainer() {
             <span style={{ fontWeight: "bold" }}> hidden word or number </span>
             in specific number of attempts. The number of attempts depends on
             the difficulty level selected. The number or word can be of length 3
-            to 7 based on your game selection.
+            to 6 based on your game selection.
             <span style={{ fontWeight: "bold" }}>
               &nbsp;A letter can’t be repeated in a Word or Number combination
             </span>

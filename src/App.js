@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, createContext } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import GamePlayContainer from "./containers/gamePlay";
 import GameSelectionContainer from "./containers/gameSelection";
@@ -7,7 +7,8 @@ import QuitRevealModalContainer from "./containers/quitRevealModal";
 import RulesMoalContainer from "./containers/rulesModal";
 import UserInputModalContainer from "./containers/userInputModal";
 import WonLostModalContainer from "./containers/wonLostModal";
-import GameLogic from "./gameLogic";
+// import { rword } from "rword";
+// import GameLogic from "./gameLogic";
 import * as GAME from "./helpers/constants";
 
 export const GameContext = createContext();
@@ -44,7 +45,12 @@ function App() {
   // newGame is used to refresh the GamePlay page
   const [newGame, setNewGame] = useState(false);
 
-  const [hiddenWord, setNewHiddenWord] = useState("sky");
+  // check if the word is valid before it's accepted to the list of user entered words. This is not applicable to numbers
+  const [isInValidWord, setIsInValidWord] = useState(false);
+
+  const [hiddenWord, setHiddenWord] = useState(
+    localStorage.getItem("hiddenWord")
+  );
 
   const [inputDuplicatesError, setInputDuplicateError] = useState(false);
 
@@ -61,8 +67,15 @@ function App() {
   const [showWonLostModal, setShowWonLostModal] = useState(false);
   const [wonTheGame, setWonTheGame] = useState(false); // true -> won, false -> lost . Called in
 
+  // clicked elements array
+  const [hintLetters, setHintLetters] = useState([]);
+
   // these context values will be passed to all the required components as props
   const contextValues = {
+    hintLetters,
+    setHintLetters,
+    isInValidWord,
+    setIsInValidWord,
     attemptsPlayed,
     setAttemptsPlayed,
     gameOver,
@@ -76,7 +89,7 @@ function App() {
     inputDuplicatesError,
     setInputDuplicateError,
     hiddenWord,
-    setNewHiddenWord,
+    setHiddenWord,
     newGame,
     setNewGame,
     myChoices,
@@ -102,12 +115,6 @@ function App() {
     setLetters,
     setShowQuitRevealModal,
   };
-  useEffect(() => {
-    console.log(attempts);
-    // console.log(showUserInputModal);
-  }, [attempts]);
-
-  console.log(GameLogic("sky", "sku"));
 
   return (
     // Game context provides all the contexts necessary for all the components and any of the comps can use the required context values

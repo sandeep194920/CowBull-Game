@@ -68,7 +68,7 @@ export const ButtonContainer = styled.div`
 
   @media (max-width: 700px) {
     align-items: center;
-    margin-top: 25%;
+    margin-top: 18%;
     width: 90%;
   }
 `;

@@ -3,6 +3,7 @@ import { GameContext } from "../App";
 import { Modal, UserInputModal } from "../components";
 import logo from "../logo.svg";
 import Radium from "radium";
+import { rword } from "rword";
 
 function UserInputModalContainer() {
   const inputStyles = {
@@ -39,8 +40,10 @@ function UserInputModalContainer() {
     },
   };
   const {
+    isInValidWord,
+    setIsInValidWord,
     attempts,
-    // attemptsPlayed,
+    attemptsPlayed,
     setAttemptsPlayed,
     wordExistError,
     setWordExistError,
@@ -63,6 +66,7 @@ function UserInputModalContainer() {
     setUserInput(target.value.toUpperCase());
     setInputDuplicateError(false);
     setWordExistError(false);
+    setIsInValidWord(false);
   };
 
   // this checks for duplicates in the userInput
@@ -73,7 +77,7 @@ function UserInputModalContainer() {
   // add your word / number handler
   const myChoiceHandler = () => {
     // check if user input has repeatative letters
-    console.log("The user Input is " + userInput);
+    // console.log("The user Input is " + userInput);
     hasDuplicates([...userInput]);
     if (hasDuplicates([...userInput])) {
       console.log("has duplicates");
@@ -82,10 +86,18 @@ function UserInputModalContainer() {
     }
 
     // if the word entered is already entered before then we should get an error
-    if (myChoices.includes(userInput)) {
+    if (myChoices !== null && myChoices.includes(userInput)) {
       console.log("Here is the error");
       setWordExistError(true);
       return;
+    }
+
+    // check if this word is valid
+    if (gameType === "Word") {
+      if (!rword.words.includes(userInput.toLowerCase())) {
+        setIsInValidWord(true);
+        return;
+      }
     }
 
     // after confirming there are no repeatative letters, we can now store the userInputs in myChoices array
@@ -109,6 +121,16 @@ function UserInputModalContainer() {
     setLetterCount(userInput.length);
   }, [userInput]);
 
+  // word is input and enter clicked
+  const enterPressedHandler = (event) => {
+    const code = event.keyCode || event.which;
+    if (code === 13 && event.target.value.length === Number(letters)) {
+      //13 is the enter keycode
+      // console.log("Confirm can be entered now");
+      myChoiceHandler();
+    }
+  };
+
   return (
     <Modal>
       <Modal.Overlay
@@ -117,6 +139,7 @@ function UserInputModalContainer() {
           setUserInput("");
           setInputDuplicateError(false);
           setWordExistError(false);
+          setIsInValidWord(false);
         }}
       />
       <Modal.Content>
@@ -124,13 +147,15 @@ function UserInputModalContainer() {
           <UserInputModal.Frame>
             <UserInputModal.Logo src={logo} alt="Logo" />
             <UserInputModal.MainText>
-              Please input your{" "}
+              Please input your {Number(attemptsPlayed) === 0 && "first"}{" "}
               <span style={{ color: "#ffa62b" }}>{gameType}</span>
             </UserInputModal.MainText>
 
             <UserInputModal.SubText>
               Attempt&nbsp;{" "}
-              <span style={{ color: "#ffa62b" }}>{myChoices.length + 1} </span>
+              <span style={{ color: "#ffa62b" }}>
+                {myChoices && myChoices.length + 1}{" "}
+              </span>
               /&nbsp;
               {attempts}
             </UserInputModal.SubText>
@@ -143,6 +168,11 @@ function UserInputModalContainer() {
           {wordExistError && (
             <UserInputModal.SubText error>
               {userInput.toUpperCase()} already exists
+            </UserInputModal.SubText>
+          )}
+          {isInValidWord && (
+            <UserInputModal.SubText error>
+              {userInput.toUpperCase()} is invalid word
             </UserInputModal.SubText>
           )}
           {/* <UserInputModal.Input
@@ -159,6 +189,7 @@ function UserInputModalContainer() {
             style={inputStyles}
             maxLength={letters}
             type={gameType === "Number" ? "number" : "text"}
+            onKeyPress={enterPressedHandler} // if enter is clicked then confirm will be clicked
           />
 
           <UserInputModal.Input>
@@ -179,6 +210,7 @@ function UserInputModalContainer() {
                 setUserInput("");
                 setInputDuplicateError(false);
                 setWordExistError(false);
+                setIsInValidWord(false);
               }}
             >
               {" "}

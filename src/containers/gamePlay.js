@@ -7,6 +7,8 @@ import { useHistory } from "react-router-dom";
 
 export default function GamePlayContainer() {
   const {
+    hintLetters,
+    setHintLetters,
     gameOver,
     setGameOver,
     attempts,
@@ -25,9 +27,30 @@ export default function GamePlayContainer() {
   } = useContext(GameContext);
 
   const history = useHistory();
+
+  const letterClickedHandler = (innerText) => {
+    // Prevents React from resetting its properties:  https://reactjs.org/docs/legacy-event-pooling.html
+    // I get error for using the same event if I don't use this
+    // event.persist();
+    console.log(`The inner text is ${innerText}`);
+    if (hintLetters.includes(innerText)) {
+      console.log("includes " + innerText);
+      // const index = hintLetters.indexOf(innerText);
+      // hintLetters.splice(index, 1);
+
+      // using filter to remove an element (innerText)that exists in array
+      const newHintLetters = hintLetters.filter(
+        (hintLetter) => hintLetter !== innerText
+      );
+      setHintLetters(newHintLetters);
+
+      return;
+    }
+    setHintLetters((prevHintLetters) => [...prevHintLetters, innerText]);
+  };
+
   //reload the window to clear cached words/numbers from previous game
   useEffect(() => {
-    console.log("new game -> ", newGame);
     if (newGame) {
       window.location.reload();
     }
@@ -35,24 +58,27 @@ export default function GamePlayContainer() {
 
   // as soon as the Game Play page opens the user input choice opens
   useEffect(() => {
-    if (myChoices.length === 0) {
+    if (myChoices !== null && myChoices.length === 0) {
       setShowUserInputModal(true);
     }
   }, [myChoices, setShowUserInputModal]);
 
+  useEffect(() => {
+    console.log(`The hidden word is ${hiddenWord}`);
+  }, [hiddenWord]);
+
   // check for win
   useEffect(() => {
-    console.log(
-      `userInput is ${myChoices[myChoices.length - 1]} from useEffect gameplay`
-    );
-    console.log(`The hidden word is ${hiddenWord}`);
-    if (myChoices.length > 0) {
+    // console.log(
+    //   `userInput is ${myChoices[myChoices.length - 1]} from useEffect gameplay`
+    // );
+    if (myChoices !== null && myChoices.length > 0) {
       const checkAgainst = myChoices[myChoices.length - 1];
       const checkForWin = GameLogic(
         hiddenWord.toUpperCase(),
         checkAgainst.toUpperCase()
       );
-      if (checkForWin.bull === 3) {
+      if (checkForWin.bull === Number(letters)) {
         setWonTheGame(true);
         setShowWonLostModal(true);
         setGameOver(true);
@@ -71,6 +97,7 @@ export default function GamePlayContainer() {
     setWonTheGame,
     attempts,
     attemptsPlayed,
+    letters,
   ]);
 
   const gameOverHandler = () => {
@@ -149,7 +176,15 @@ export default function GamePlayContainer() {
 
                 <GamePlay.LettersContainer>
                   {letters.map((letter, index) => (
-                    <GamePlay.LetterContainer key={letter + index}>
+                    <GamePlay.LetterContainer
+                      onClick={(e) => letterClickedHandler(e.target.innerText)}
+                      key={letter + index}
+                      style={{
+                        backgroundColor: hintLetters.includes(letter)
+                          ? "grey"
+                          : "#394867",
+                      }}
+                    >
                       {letter}
                     </GamePlay.LetterContainer>
                   ))}

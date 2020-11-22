@@ -15,16 +15,52 @@ export default function GameSelectionContainer() {
     setLetters,
     setAttempts,
     setAttemptsPlayed,
+    setHiddenWord,
   } = useContext(GameContext);
   const history = useHistory();
   const [levelSelected, setLevelSelected] = useState(null);
   const [lettersSelected, setLettersSelected] = useState(null);
 
   useEffect(() => {
-    console.log(
-      `The game type is ${gameType}, the level is ${level} and the length is ${letters}`
-    );
-  });
+    const randomWords = require("random-words");
+    const noRepeatedLetters = require("no-repeated-letters");
+
+    if (gameType === "Word") {
+      let word = randomWords();
+      while (word.length !== Number(letters) || !noRepeatedLetters(word)) {
+        // the word shoild not exceed the length selected and it should not have repeated characters
+        word = randomWords();
+      }
+      // console.log("I got my word and it is " + word);
+      localStorage.setItem("hiddenWord", word);
+      setHiddenWord(localStorage.getItem("hiddenWord"));
+    } else if (gameType === "Number") {
+      const numberSet = "0123456789";
+      var stringLength = Number(letters);
+
+      function pickRandom() {
+        return numberSet[Math.floor(Math.random() * numberSet.length)];
+      }
+
+      let numbers = Array.apply(null, Array(stringLength))
+        .map(pickRandom)
+        .join("");
+
+      while (
+        numbers.length !== Number(letters) ||
+        !noRepeatedLetters(numbers)
+      ) {
+        // the word shoild not exceed the length selected and it should not have repeated characters
+        numbers = Array.apply(null, Array(stringLength))
+          .map(pickRandom)
+          .join("");
+      }
+
+      console.log(`The random numbers ${numbers}`);
+      localStorage.setItem("hiddenWord", numbers);
+      setHiddenWord(localStorage.getItem("hiddenWord"));
+    }
+  }, [gameType, setHiddenWord, letters]);
 
   const gamePlayHandler = () => {
     console.log(

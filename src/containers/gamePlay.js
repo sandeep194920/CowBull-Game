@@ -36,6 +36,7 @@ export default function GamePlayContainer() {
   // As soon as this page (gamePlay) opens, the user input modal should open for first time.
   // Checking !mychoices because, mychoices gets created in local storage only when the first word is entered. Since at this point there is no mychoices, I need to write this condition for input modal to open for first time
   useEffect(() => {
+    console.log("First time");
     if (!myChoices) localStorage.setObj("userInputs", []);
   }, [myChoices]);
 

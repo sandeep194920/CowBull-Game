@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/CowBullGame/static/js/main.c534fd08.chunk.js",
+    "main.js.map": "/CowBullGame/static/js/main.c534fd08.chunk.js.map",
+    "runtime-main.js": "/CowBullGame/static/js/runtime-main.29ef2312.js",
+    "runtime-main.js.map": "/CowBullGame/static/js/runtime-main.29ef2312.js.map",
+    "static/js/2.14e0df93.chunk.js": "/CowBullGame/static/js/2.14e0df93.chunk.js",
+    "static/js/2.14e0df93.chunk.js.map": "/CowBullGame/static/js/2.14e0df93.chunk.js.map",
+    "index.html": "/CowBullGame/index.html",
+    "precache-manifest.fd9bcc9273eadcbfd29ed1cec10c7aa9.js": "/CowBullGame/precache-manifest.fd9bcc9273eadcbfd29ed1cec10c7aa9.js",
+    "service-worker.js": "/CowBullGame/service-worker.js",
+    "static/js/2.14e0df93.chunk.js.LICENSE.txt": "/CowBullGame/static/js/2.14e0df93.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/CowBullGame/static/media/logo.956ab9b4.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.29ef2312.js",
+    "static/js/2.14e0df93.chunk.js",
+    "static/js/main.c534fd08.chunk.js"
+  ]
+}

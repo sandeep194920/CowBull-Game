@@ -4,7 +4,7 @@ import { Modal, WonLostModal } from "../components";
 // import { useHistory } from "react-router-dom";
 
 export default function WonLostModalContainer() {
-  const { setShowWonLostModal, wonTheGame, gameType, hiddenWord } = useContext(
+  const { setShowWonLostModal, wonTheGame, gameType, hidden } = useContext(
     GameContext
   );
 
@@ -43,7 +43,7 @@ export default function WonLostModalContainer() {
           )}
           <WonLostModal.SubText>The {gameType} is</WonLostModal.SubText>
           <WonLostModal.SubText result="true">
-            {hiddenWord.toUpperCase()}
+            {hidden.toUpperCase()}
           </WonLostModal.SubText>
           <WonLostModal.ButtonContainer>
             <WonLostModal.Button onClick={() => setShowWonLostModal(false)}>

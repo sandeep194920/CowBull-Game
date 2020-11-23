@@ -21,7 +21,7 @@ export default function GamePlayContainer() {
     setShowWonLostModal,
     myChoices,
     newGame,
-    hiddenWord,
+    hidden,
   } = useContext(GameContext);
 
   const history = useHistory();
@@ -48,11 +48,11 @@ export default function GamePlayContainer() {
 
   // check for win
   useEffect(() => {
-    console.log(`The hidden word is ${hiddenWord}`);
+    console.log(`The hidden word is ${hidden}`);
     if (myChoices !== null && myChoices.length > 0) {
       const checkAgainst = myChoices[myChoices.length - 1];
       const checkForWin = GameLogic(
-        hiddenWord.toUpperCase(),
+        hidden.toUpperCase(),
         checkAgainst.toUpperCase()
       );
       if (checkForWin.bull === 3) {
@@ -68,7 +68,7 @@ export default function GamePlayContainer() {
     }
   }, [
     myChoices,
-    hiddenWord,
+    hidden,
     setGameOver,
     setShowWonLostModal,
     setWonTheGame,
@@ -124,7 +124,7 @@ export default function GamePlayContainer() {
         </GamePlay.MainText>
         {gameOver && (
           <GamePlay.SubText gameOver>
-            The {gameType} is {hiddenWord.toUpperCase()}
+            The {gameType} is {hidden.toUpperCase()}
           </GamePlay.SubText>
         )}
         <GamePlay.WordContainer difficulty>
@@ -141,7 +141,7 @@ export default function GamePlayContainer() {
           myChoices.map((myChoice, index) => {
             // word match logic here to give cows and bulls
             const result = GameLogic(
-              hiddenWord.toUpperCase(),
+              hidden.toUpperCase(),
               myChoice.toUpperCase()
             );
 

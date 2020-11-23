@@ -70,13 +70,19 @@ export const ButtonContainer = styled.div`
   }
   @media (max-width: 1000px) {
     align-items: center;
-    margin-top: 20%;
+    margin-top: 4%;
     width: 90%;
   }
 
   @media (max-width: 700px) {
     align-items: center;
     margin-top: 25%;
+    width: 90%;
+  }
+
+  @media (max-width: 400px) {
+    align-items: center;
+    margin-top: 55%;
     width: 90%;
   }
 `;

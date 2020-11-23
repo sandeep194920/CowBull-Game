@@ -7,7 +7,6 @@ import QuitRevealModalContainer from "./containers/quitRevealModal";
 import RulesMoalContainer from "./containers/rulesModal";
 import UserInputModalContainer from "./containers/userInputModal";
 import WonLostModalContainer from "./containers/wonLostModal";
-import GameLogic from "./gameLogic";
 import * as GAME from "./helpers/constants";
 
 export const GameContext = createContext();
@@ -44,7 +43,7 @@ function App() {
   // newGame is used to refresh the GamePlay page
   const [newGame, setNewGame] = useState(false);
 
-  const [hiddenWord, setHiddenWord] = useState("sky");
+  const [hidden, setHidden] = useState("sky");
 
   const [inputDuplicatesError, setInputDuplicateError] = useState(false);
 
@@ -75,8 +74,8 @@ function App() {
     setWordExistError,
     inputDuplicatesError,
     setInputDuplicateError,
-    hiddenWord,
-    setHiddenWord,
+    hidden,
+    setHidden,
     newGame,
     setNewGame,
     myChoices,
@@ -106,8 +105,6 @@ function App() {
     console.log(attempts);
     // console.log(showUserInputModal);
   }, [attempts]);
-
-  console.log(GameLogic("sky", "sku"));
 
   return (
     // Game context provides all the contexts necessary for all the components and any of the comps can use the required context values

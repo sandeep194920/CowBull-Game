@@ -46,6 +46,16 @@ export const MainText = styled.h1`
     margin-left: 20%;
     margin-top: 10%;
   }
+
+  @media (max-width: 400px) {
+    font-size: 0.9em;
+    letter-spacing: 0.3px;
+    line-height: 2.5em;
+    margin-right: 5%;
+    margin-left: 15%;
+    /* background-color: orange; */
+    margin-top: 10%;
+  }
 `;
 
 export const SubText = styled.h3`
@@ -58,8 +68,8 @@ export const SubText = styled.h3`
   left: 42%;
   letter-spacing: ${({ result }) => (result ? "4px" : "1px")};
   @media (max-width: 700px) {
-    top: ${({ result }) => (result ? "35%" : "25%")};
-    left: 22%;
+    top: ${({ result }) => (result ? "45%" : "38%")};
+    left: 30%;
     font-size: 1em;
   }
 `;
@@ -73,6 +83,16 @@ export const ButtonContainer = styled.div`
   @media (max-width: 700px) {
     align-items: center;
     margin-top: 65%;
+  }
+
+  @media (max-width: 700px) {
+    align-items: center;
+    margin-top: 65%;
+  }
+
+  @media (max-width: 400px) {
+    align-items: center;
+    margin-top: 95%;
   }
 `;
 

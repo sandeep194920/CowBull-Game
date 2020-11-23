@@ -37,6 +37,14 @@ function UserInputModalContainer() {
       marginLeft: "15%",
       marginTop: "13%",
     },
+
+    "@media (max-width: 400px)": {
+      width: "9em",
+      padding: "8px",
+      marginLeft: "5%",
+      marginRight: "2%",
+      marginTop: "13%",
+    },
   };
   const {
     attempts,

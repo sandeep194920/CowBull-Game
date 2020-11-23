@@ -45,6 +45,14 @@ export const MainText = styled.h1`
     margin-left: 5%;
     margin-top: 10%;
   }
+  @media (max-width: 400px) {
+    font-size: 0.9em;
+    letter-spacing: 0.3px;
+    line-height: 2em;
+    margin-right: 1%;
+    margin-left: 7%;
+    margin-top: 15%;
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -117,7 +125,9 @@ export const SubText = styled.p`
           color: "red",
         }
       : {
-          marginLeft: "12px",
+          marginLeft: "-60px",
+          // background: "orange",
+          // marginRight: "50px",
         }}
 `;
 

@@ -1,4 +1,7 @@
-export default function GameLogic(hidden, guessed) {
+const randomWords = require("random-words");
+const noRepeatedLetters = require("no-repeated-letters");
+
+export function GameLogic(hidden, guessed) {
   // hidden word - sky
   // guessed word - ink  -- 1c
 
@@ -22,4 +25,37 @@ export default function GameLogic(hidden, guessed) {
     });
   });
   return { cow, bull };
+}
+
+//gets the word or number for the game based on game type and letters length
+export async function getLetters(gameType = "Word", letters = 3) {
+  // this function returns word / number
+  if (gameType === "Word") {
+    let word = randomWords();
+    while (word.length !== Number(letters) || !noRepeatedLetters(word)) {
+      // the word shoild not exceed the length selected and it should not have repeated characters
+      word = randomWords();
+    }
+    // console.log("I got my word and it is " + word);
+    return word;
+  } else if (gameType === "Number") {
+    const numberSet = "0123456789";
+    var stringLength = Number(letters);
+
+    function pickRandom() {
+      return numberSet[Math.floor(Math.random() * numberSet.length)];
+    }
+
+    let number = Array.apply(null, Array(stringLength))
+      .map(pickRandom)
+      .join("");
+
+    while (number.length !== Number(letters) || !noRepeatedLetters(number)) {
+      // the word shoild not exceed the length selected and it should not have repeated characters
+      number = Array.apply(null, Array(stringLength)).map(pickRandom).join("");
+    }
+
+    console.log(`The random number ${number}`);
+    return number;
+  }
 }

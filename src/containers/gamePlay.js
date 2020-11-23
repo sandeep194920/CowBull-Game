@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { GamePlay } from "../components";
 import logo from "../logo.svg";
 import { GameContext } from "../App";
-import GameLogic from "../gameLogic";
+import { GameLogic } from "../gameLogic";
 import { useHistory } from "react-router-dom";
 
 export default function GamePlayContainer() {

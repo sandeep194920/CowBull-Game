@@ -43,8 +43,9 @@ function App() {
   // newGame is used to refresh the GamePlay page
   const [newGame, setNewGame] = useState(false);
 
-  const [hidden, setHidden] = useState("sky");
-
+  // const [hidden, setHidden] = useState("");
+  const [hidden, setHidden] = useState(localStorage.getItem("hidden"));
+  const [isInValidWord, setIsInValidWord] = useState(false);
   const [inputDuplicatesError, setInputDuplicateError] = useState(false);
 
   const [wordExistError, setWordExistError] = useState(false);
@@ -52,6 +53,8 @@ function App() {
   const [gameOver, setGameOver] = useState(false);
 
   const [attempts, setAttempts] = useState(localStorage.getItem("attempts"));
+
+  const [loading, setLoading] = useState(true);
 
   const [attemptsPlayed, setAttemptsPlayed] = useState(
     localStorage.getItem("attemptsPlayed")
@@ -62,6 +65,10 @@ function App() {
 
   // these context values will be passed to all the required components as props
   const contextValues = {
+    isInValidWord,
+    setIsInValidWord,
+    loading,
+    setLoading,
     attemptsPlayed,
     setAttemptsPlayed,
     gameOver,
@@ -102,7 +109,7 @@ function App() {
     setShowQuitRevealModal,
   };
   useEffect(() => {
-    console.log(attempts);
+    if (attempts) console.log(attempts);
     // console.log(showUserInputModal);
   }, [attempts]);
 

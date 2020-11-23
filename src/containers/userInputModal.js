@@ -3,6 +3,7 @@ import { GameContext } from "../App";
 import { Modal, UserInputModal } from "../components";
 import logo from "../logo.svg";
 import Radium from "radium";
+import { rword } from "rword";
 
 function UserInputModalContainer() {
   const inputStyles = {
@@ -47,6 +48,8 @@ function UserInputModalContainer() {
     },
   };
   const {
+    isInValidWord,
+    setIsInValidWord,
     attempts,
     // attemptsPlayed,
     setAttemptsPlayed,
@@ -71,6 +74,7 @@ function UserInputModalContainer() {
     setUserInput(target.value.toUpperCase());
     setInputDuplicateError(false);
     setWordExistError(false);
+    setIsInValidWord(false);
   };
 
   // this checks for duplicates in the userInput
@@ -94,6 +98,14 @@ function UserInputModalContainer() {
       console.log("Here is the error");
       setWordExistError(true);
       return;
+    }
+
+    // check if this word is valid
+    if (gameType === "Word") {
+      if (!rword.words.includes(userInput.toLowerCase())) {
+        setIsInValidWord(true);
+        return;
+      }
     }
 
     // after confirming there are no repeatative letters, we can now store the userInputs in myChoices array
@@ -135,6 +147,7 @@ function UserInputModalContainer() {
           setUserInput("");
           setInputDuplicateError(false);
           setWordExistError(false);
+          setIsInValidWord(false);
         }}
       />
       <Modal.Content>
@@ -165,6 +178,13 @@ function UserInputModalContainer() {
               {userInput.toUpperCase()} already exists
             </UserInputModal.SubText>
           )}
+
+          {isInValidWord && (
+            <UserInputModal.SubText error>
+              {userInput.toUpperCase()} is invalid word
+            </UserInputModal.SubText>
+          )}
+
           {/* <UserInputModal.Input
             type="text"
             ref={inputRef}
@@ -200,6 +220,7 @@ function UserInputModalContainer() {
                 setUserInput("");
                 setInputDuplicateError(false);
                 setWordExistError(false);
+                setIsInValidWord(false);
               }}
             >
               {" "}

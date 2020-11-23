@@ -5,9 +5,11 @@ import { GameContext } from "../App";
 import { useHistory } from "react-router-dom";
 import * as GAME from "../helpers/constants";
 import { gameTypes as attemptsGetter } from "../helpers/gameTypes";
+import { getLetters } from "../gameLogic";
 
 export default function GameSelectionContainer() {
   const {
+    setHidden,
     gameType,
     level,
     setLevel,
@@ -15,16 +17,11 @@ export default function GameSelectionContainer() {
     setLetters,
     setAttempts,
     setAttemptsPlayed,
+    hidden,
   } = useContext(GameContext);
   const history = useHistory();
   const [levelSelected, setLevelSelected] = useState(null);
   const [lettersSelected, setLettersSelected] = useState(null);
-
-  useEffect(() => {
-    console.log(
-      `The game type is ${gameType}, the level is ${level} and the length is ${letters}`
-    );
-  });
 
   const gamePlayHandler = () => {
     console.log(
@@ -36,14 +33,27 @@ export default function GameSelectionContainer() {
       attemptsGetter[`${Number(letters)}`][`${level.toLowerCase()}`][
         "attempts"
       ];
-    console.log(attempts);
 
     setAttempts(localStorage.setItem("attempts", Number(attempts)));
     localStorage.setItem("attemptsPlayed", Number(0));
     setAttemptsPlayed(localStorage.getItem("attemptsPlayed"));
 
+    // history.push("/play");
+    getLettersAndRoute();
+  };
+
+  const getLettersAndRoute = async () => {
+    const result = await getLetters(gameType, letters);
+    // do something else here after firstFunction completes
+    localStorage.setItem("hidden", result);
+    setHidden(localStorage.getItem("hidden"));
     history.push("/play");
   };
+
+  // core logic -> letters match
+  useEffect(() => {
+    console.log("The hidden is -> coming from gameSelection ", hidden);
+  }, [hidden]);
 
   const setLevelHandler = ({ target }) => {
     console.log(`The target value is ${target.value}`);

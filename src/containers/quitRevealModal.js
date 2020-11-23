@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 export default function QuitRevealModalContainer() {
   const history = useHistory();
   const {
+    hidden,
     showRevealModal,
     showQuitRevealModal,
     setShowQuitRevealModal,
@@ -43,7 +44,9 @@ export default function QuitRevealModalContainer() {
                   Alright, the hidden {gameType} is
                   {/* <span style={{ color: "#ffa62b" }}>W H A L E</span> */}
                 </QuitRevealModal.MainText>
-                <QuitRevealModal.SubText>WHALE</QuitRevealModal.SubText>
+                <QuitRevealModal.SubText>
+                  {hidden.toUpperCase()}
+                </QuitRevealModal.SubText>
               </>
             )}
           </QuitRevealModal.Frame>

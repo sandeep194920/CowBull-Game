@@ -44,7 +44,7 @@ function App() {
   // newGame is used to refresh the GamePlay page
   const [newGame, setNewGame] = useState(false);
 
-  const [hiddenWord, setNewHiddenWord] = useState("sky");
+  const [hiddenWord, setHiddenWord] = useState("sky");
 
   const [inputDuplicatesError, setInputDuplicateError] = useState(false);
 
@@ -76,7 +76,7 @@ function App() {
     inputDuplicatesError,
     setInputDuplicateError,
     hiddenWord,
-    setNewHiddenWord,
+    setHiddenWord,
     newGame,
     setNewGame,
     myChoices,

@@ -82,7 +82,7 @@ function UserInputModalContainer() {
     }
 
     // if the word entered is already entered before then we should get an error
-    if (myChoices.includes(userInput)) {
+    if (myChoices && myChoices.includes(userInput)) {
       console.log("Here is the error");
       setWordExistError(true);
       return;
@@ -99,6 +99,16 @@ function UserInputModalContainer() {
       Number(localStorage.getItem("attemptsPlayed")) + 1
     );
     setAttemptsPlayed(localStorage.getItem("attemptsPlayed"));
+  };
+
+  // word is input and enter clicked
+  const enterPressedHandler = (event) => {
+    const code = event.keyCode || event.which;
+    if (code === 13 && event.target.value.length === Number(letters)) {
+      //13 is the enter keycode
+      // console.log("Confirm can be entered now");
+      myChoiceHandler();
+    }
   };
 
   useEffect(() => {
@@ -130,7 +140,9 @@ function UserInputModalContainer() {
 
             <UserInputModal.SubText>
               Attempt&nbsp;{" "}
-              <span style={{ color: "#ffa62b" }}>{myChoices.length + 1} </span>
+              <span style={{ color: "#ffa62b" }}>
+                {myChoices && myChoices.length + 1}{" "}
+              </span>
               /&nbsp;
               {attempts}
             </UserInputModal.SubText>
@@ -159,6 +171,7 @@ function UserInputModalContainer() {
             style={inputStyles}
             maxLength={letters}
             type={gameType === "Number" ? "number" : "text"}
+            onKeyPress={enterPressedHandler} // if enter is clicked then confirm will be clicked
           />
 
           <UserInputModal.Input>

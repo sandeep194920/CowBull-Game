@@ -35,18 +35,19 @@ export default function GamePlayContainer() {
 
   // as soon as the Game Play page opens the user input choice opens
   useEffect(() => {
-    if (myChoices.length === 0) {
+    if (myChoices !== null && myChoices.length === 0) {
       setShowUserInputModal(true);
     }
   }, [myChoices, setShowUserInputModal]);
 
   // check for win
   useEffect(() => {
-    console.log(
-      `userInput is ${myChoices[myChoices.length - 1]} from useEffect gameplay`
-    );
+    // console.log(
+    //   `userInput is ${myChoices[myChoices.length - 1]} from useEffect gameplay`
+    // );
+
     console.log(`The hidden word is ${hiddenWord}`);
-    if (myChoices.length > 0) {
+    if (myChoices !== null && myChoices.length > 0) {
       const checkAgainst = myChoices[myChoices.length - 1];
       const checkForWin = GameLogic(
         hiddenWord.toUpperCase(),

@@ -93,7 +93,7 @@ export const AttemptNumber = styled.p`
 export const AttemptResult = styled.h2`
   display: flex;
   justify-content: space-around;
-  width: 4em;
+  width: 3em;
   /* background-color: yellow; */
   color: #ffe05d;
   /* color: #b8de6f; */
@@ -111,6 +111,7 @@ export const AttemptResult = styled.h2`
 export const LettersContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-right: 1em;
   /* background-color: white; */
   /* margin-left: 2%; */
 
@@ -129,7 +130,7 @@ export const LetterContainer = styled.p`
   border-radius: 20%;
   margin: 0 4%;
   height: 40%;
-  width: 40px;
+  width: 43px;
   text-align: center;
   background-color: #394867;
   text-transform: uppercase;
@@ -146,6 +147,7 @@ export const LetterContainer = styled.p`
 export const SubText = styled.p`
   margin-top: ${({ gameOver }) => gameOver && "7em"};
   margin-left: ${({ gameOver }) => gameOver && "-12em"};
+  margin-left: ${({ cow }) => cow && "5px"};
   color: ${({ gameOver }) => (gameOver ? "#ffa62b" : "white")};
   color: ${({ cow }) => cow && "#b8de6f"};
   color: ${({ bull }) => bull && "#ffe05d"};

@@ -55,7 +55,7 @@ export default function GamePlayContainer() {
         hidden.toUpperCase(),
         checkAgainst.toUpperCase()
       );
-      if (checkForWin.bull === 3) {
+      if (checkForWin.bull === Number(letters)) {
         setWonTheGame(true);
         setShowWonLostModal(true);
         setGameOver(true);
@@ -74,6 +74,7 @@ export default function GamePlayContainer() {
     setWonTheGame,
     attempts,
     attemptsPlayed,
+    letters,
   ]);
 
   const gameOverHandler = () => {
